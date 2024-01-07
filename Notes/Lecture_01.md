@@ -200,7 +200,7 @@ Indeed, addition is the *grouping* of quantities.
 
 From this, we can *inductively* define the natural numbers,
 1. define $1$ as given
-2. define the next number to be the previous one plus one ($S(n) = n + 1$)
+2. define the next number to be the current number plus one $(S(n) = n + 1)$
 
 This set of numbers is the natural numbers, which are also called the counting numbers.
 
@@ -318,7 +318,7 @@ If the number cannot be constructed in this form, then it is not a real number.
 
 <span style="margin-left: 1rem;"></span>$0.9999\ldots = 1$
 
-<div style="border: 2px solid #85DEF2; border-top: none; border-style: none dashed solid dashed; padding: 10px; margin-bottom: 10px; border-radius: 0.25rem;">
+<div style="border: 2px solid #91F2F2; border-top: none; border-style: none dashed solid dashed; padding: 10px; margin-bottom: 10px; border-radius: 0.25rem;">
 </div>
 
 An equivalent formulation of completeness is the *least upper-bound property* (or *lub*).
@@ -345,8 +345,6 @@ Equivalently, the reals satisfy the *greatest lower-bound property*, but this is
 
 <div style="border: 2px solid #3BACD9; padding: 10px; margin-bottom: 10px; border-radius: 0.25rem;">
     📖 <strong>Order</strong> is a relation on a set that defines an <i>arrangement</i> among elements in the set.
-    <br/>
-    When the order defines an arrangement <i>for all elements</i> in the set, the order is a <strong>partial order</strong>.
 </div>
 
 Order is much more intuitive than completeness, but perhaps less intuitive than the field axioms.
@@ -359,6 +357,18 @@ First, let us define $a, b, c \in \mathbb{R}$, then,
 | Irreflexive | $a \not< a$ | $12 \not< 12$ |
 |Antisymmetric| $a < b \Longrightarrow b \not< a$ | $2 < 9 \Longrightarrow 9 \not< 2$ |
 |Transitive | $a < b $ and $b < c \Longrightarrow  a < c$ | $3 < 4$ and $4 < 6 \Longrightarrow 3 < 6$ |
+
+From this ordering, there exists the **trichotomy of the reals**, which is that, for $a, b \in \mathbb{R}$, exactly one of the following cases is true,
+
+$$
+\begin{align*}
+\text{I. }& a < b
+\\
+\text{II. }& a > b
+\\
+\text{III. }& a = b
+\end{align*}
+$$
 
 
 # References

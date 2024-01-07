@@ -1,0 +1,633 @@
+% File:      NotesTemplate.tex
+% Author:    Gage Sorrell <gsorrell@purdue.edu>
+% Copyright: (c) 2024 Gage Sorrell
+% License:   MIT
+
+\documentclass[letterpaper,twoside]{article}
+
+% Packages
+
+\usepackage[english]{babel}          % Common package
+\usepackage[utf8]{inputenc}          % Common package
+\usepackage[margin=0.5in,bottom=0.75in]{geometry} % Page margins
+\usepackage{amsmath}                 % General math
+\usepackage{graphicx}                % For `\includegraphics{}`
+\usepackage{setspace}                % For `\onehalfspacing`
+\usepackage{float}                   % Position options for `\includegraphics{}`
+\usepackage{amsfonts}                % `\mathbb{}`, etc.
+\usepackage{ragged2e}                % For justified text
+\usepackage{tocloft}                 % For customizing the Table of Contents
+\usepackage{xcolor}                  % To use colors
+\usepackage{tcolorbox}               % For boxed text
+\usepackage{emoji}                   % For emoji
+\usepackage{makecell}                % For linebreaks in table cells
+\usepackage{fancyhdr}                % For the header and footer
+\usepackage{multicol}                % Two-column layout
+\usepackage{hyperref}                % For hyperlinks
+\usepackage{xcolor}                  % For coloring hyperlinks
+\usepackage{titlesec}                % For coloring section titles
+\usepackage{tabularx}                % For tables of specified width
+\usepackage{enumitem}                % Set margins within itemize environments
+
+% Variables
+
+\def\Author{Gage Sorrell}
+\def\BulletPointSeparator{\SmallHSpace$\cdot$\SmallHSpace}
+\def\CourseName{MA 15300-02}
+\def\CourseNameFriendly{College Algebra}
+\def\DocumentTitle{MA153 Notes Day \LectureDay Week \LectureWeek}
+\def\LectureDay{1}
+\def\LectureWeek{1}
+\def\SmallHSpace{\hspace*{1mm}}
+\def\Mobius{M\"obius\ }
+
+% Commands
+
+\newcommand{\Eg}[1]{\textit{e.g.}, #1}
+\newcommand\Ie[1]{\textit{i.e.}, #1}
+
+\newcommand\CalendarCell[1]{\footnotesize\textsc{#1}}
+\newcommand\CalendarItemSection[2]{\textbf{#1} #2}
+\newcommand\CalendarItemAssignment[1]{\color{DeepGold}{#1}}
+
+% Define the command for a stylized definition
+% #1 - Term to be defined
+% #2 - Definition of the term
+\newcommand{\DefinedTerm}[1]{\textbf{#1}}
+\newcommand{\TermDefinition}[1]{%
+    \begin{tcolorbox}[enhanced jigsaw, % Allows box to break across pages
+                    %   colback=blue!5, % Background color
+                      colback=white, % Background color
+                      colframe=blue!75!black, % Frame color
+                      arc=0mm, % Removes rounded corners
+                      boxrule=0.5pt, % Frame thickness
+                      top=2pt, bottom=2pt, left=5pt, right=5pt] % Spacing around the text
+    \emoji{book} \textbf{Definition.}\SmallHSpace #1
+    \end{tcolorbox}
+}
+
+% Configuration
+
+\author{\Author}
+\onehalfspacing
+\setlength{\parindent}{0pt}
+\title{\DocumentTitle}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\tcbuselibrary{skins,breakable} % Extra features for tcolorbox
+\setlength{\parskip}{3mm}
+\setlength{\columnsep}{0.5in}
+\titlespacing*{\section}{0pt}{4pt}{0pt}
+\titlespacing*{\subsection}{0pt}{4pt}{0pt}
+\titlespacing*{\subsubsection}{0pt}{4pt}{0pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textsc{\CourseName}}
+\fancyhead[R]{\textsc{Syllabus}}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyfoot[L]{\textsc{Purdue University Fort Wayne}}
+\fancyfoot[R]{Page \thepage}
+
+\definecolor{Gold}{HTML}{C39815}
+\definecolor{DeepGold}{HTML}{90700F}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{DeepGold}}
+  {\thesection}{1em}{}
+
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{DeepGold}}
+  {\thesubsection}{1em}{}
+
+\titleformat{\paragraph}[runin]
+  {\normalfont\normalsize\bfseries\color{DeepGold}}
+  {}{0em}{}
+\hypersetup
+{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta, 
+    urlcolor=Gold
+}
+
+% Environments
+
+\newenvironment{SorrellItemize}
+{
+    \setlength\parskip{-5pt}
+    \begin{itemize}[leftmargin=11pt]
+        \setlength\itemsep{-4pt}
+}{
+    \end{itemize}
+}
+
+% END PREAMBLE %
+
+\begin{document}
+
+\begin{titlepage}
+    \newgeometry{margin=1.25in}
+    \begin{figure}[t]
+        \centering
+        \includegraphics[width=1.5in]{../Resources/Letterhead.png}
+    \end{figure}
+    \vspace*{0.5in}
+    \begin{center}
+        \huge
+        \textsc{Syllabus}
+        
+        \normalsize
+        College of Science \BulletPointSeparator Department of Mathematical Sciences
+
+        \vspace*{0.25in}
+        \large
+        \begin{table}[H]
+            \centering
+            \doublespacing
+            \hspace*{20mm}\begin{tabular}{ll}
+                \textsc{Course} & \textsc{MA 15300-02} \\
+                \textsc{Semester} & \textsc{Spring 2024}\\
+                \textsc{Classroom} & \textsc{Kt G47} \\
+                \textsc{Meeting Time} & \textsc{TR 9:00a---10:15a} \\
+                \textsc{Instructor Name} & \textsc{Gage Sorrell} \\
+                \textsc{Instructor Office} & \textsc{Kt 281} \\
+                \textsc{Instructor Email} & \href{mailto:gsorrell@purdue.edu}{gsorrell@purdue.edu} \\
+                \textsc{Instructor Phone N\textsuperscript{\underline{\scriptsize o}}}& \href{tel:12604810181}{+1 260 481 0181} \\
+                \textsc{Office Hours} & \textsc{T 10:15a---11:45a, F 8:00a---9:30a} \\
+            \end{tabular}
+        \end{table}
+        % \begin{table}[H]
+        %     \centering
+        %     \begin{tabular}{ll}
+        %         \textsc{Topics} & \textsc{Textbook Section(s)}     \\
+        %         \hline
+        %         Syllabus Q \& A & \textit{None}\\
+        %         Predicate Logic & \textit{None} \\
+        %         Sets & \textit{None} \\
+        %         Relations, $\sim$ and $=$ & \textit{None} \\
+        %         Functions & \textit{None} \\
+        %         The Complete Ordered Field, $\mathbb{R}$ & \textit{None} \\
+        %     \end{tabular}
+        % \end{table}
+        \vspace*{\fill}
+        % \footnotesize
+        % \justifying
+        % \leftskip=0.75in
+        % \rightskip=0.75in
+        % \paragraph*{Objective}
+        % In my experience with math students, difficulty with course content is often rooted in small misunderstandings of fundamental (\Ie{prerequisite}) material.
+        % I have identified five topics of prerequisite material that I believe are the biggest ``pain points.''
+        % In this lecture, we will achieve a shared understanding and language of these topics, to maximize our chances of success.
+    \end{center}
+    \noindent
+    \
+    \large
+    \begin{center}
+        \parbox{4in}
+        {
+            \textit{I have never met a problem I couldn't solve with a little bit of algebra, and a lot of ignoring the underlying issues.}
+
+            \normalsize
+            \vspace*{2mm}
+            \hspace*{\fill}---Unknown
+        }
+    \end{center}
+    \vspace*{1in}
+\end{titlepage}
+
+\newpage
+\restoregeometry
+\newgeometry{inner=0.75in,outer=0.5in,top=0.75in,bottom=0.75in}
+\setcounter{section}{-1}
+\setcounter{page}{0}
+
+\begin{center}
+    \begin{minipage}{0.5\textwidth}
+        \justify
+        \section*{Instructor Statement of Purpose}
+        I have written this syllabus to be a \textit{comprehensive description} of the course.
+        It will benefit you to refer back to this frequently over the semester.
+
+        \vspace{2mm}
+        \noindent
+        As the instructor of this course, \textit{I am here to serve you}.
+        Please do not hesitate to speak with me whenever you have a question, or struggle with the course content.
+
+        \vspace{2mm}
+        \noindent
+        Education is the key to socio-economic mobility: it unlocks potential for you to achieve what many others do not.
+        It is my goal that the content that you learn in this course will profoundly elevate your success in life.
+    \end{minipage}
+\end{center}
+\section*{Extended Information}
+\large
+\begin{table}[H]
+    \centering
+    \doublespacing
+    \begin{tabular}{rl}
+        \textsc{Supplies} & \textsc{TI-84 Plus or TI-84 CE Plus} (\$50, Used)\\
+        & \href{https://pfw.mobius.cloud/login}{\textsc{\Mobius}}(\$20)\\
+        \textsc{Textbook} & \textsc{(Optional) Functions Modeling Change (6e) by Connally \textit{et al.}}\\
+        \textsc{Prerequisites} & \textsc{MA 11100 with B-- or Placement by Departmental Exam}\\
+        \textsc{Course Website} & \href{https://purdue.brightspace.com}{\textsc{BrightSpace}}\\
+        \textsc{Discord Server} & \href{https://discord.gg/t3fPxS8vvK}{\textsc{Invite Link}}\\
+        % \textsc{Course Coordinator} & \textsc{Professor John LaMaster} <\href{mailto:lamaster@pfw.edu}{lamaster@pfw.edu}> \\
+    \end{tabular}
+\end{table}
+\normalsize
+
+\begin{itemize}
+    \item If you purchased \Mobius within the last year, you need not purchase it again; simply register for this section
+    \item You may rent a TI-84 Plus calculator at Walb Student Union 225 (\href{tel:12604816586}{260-481-6586})
+    \item While the 6th edition of the text is most recent, the 5th and 3rd editions are also sufficient
+    \item In addition to my office hours, I am also available by appointment
+\end{itemize}
+
+\begin{multicols*}{2}
+    \section*{Objectives \& Content}
+
+    The purpose of this course is to prepare you for calculus.
+    If you do not intend to take calculus, a better course to take would be either MA 14000 or STAT 12500; they have higher success rates.
+
+    In this course you will solve problems presented as real-world situations by creating and interpreting mathematical models which include linear, exponential, quadratic, power, polynomial and rational functions.
+    Solutions to the problems are formulated, validated, and analyzed using mental, paper and pencil, algebraic, and technology-based techniques as appropriate.
+
+    MA 15300 meets all \href{https://transferin.net/ways-to-earn-credit/statewide-transfer-general-education-core-stgec/}{eight outcomes} (3.1 to 3.8) in Area 3: Quantitative Reasoning of the Indiana General Education Core.
+
+    We will cover portions of Chapters 1--6 and Chapter 11 of the text.
+    Course goals are listed on the \href{https://users.pfw.edu/lamaster/ma153/GeneralCourseInformationMA15300MA15400.pdf}{General Course Information} document.
+
+    Learning outcomes are listed in the lessons provided on BrightSpace in the \textit{Supplementary Resources} folders for each section of the text.
+    See the \textit{Flash Cards} on \Mobius for assessment questions aligned to each learning outcome.
+
+    \section*{Rhino Success}
+
+    % \textit{Excerpted from Professor LaMaster's resources, he has provided some motivating words regarding this course.}
+
+    I believe in your success and want to support you to meet your goals.
+    \textbf{You can do it!}
+    But it will require that you take charge of your learning, do the work required, and make the commitment to do what it takes to succeed.
+
+    If you want to succeed in life, be like the rhinoceros!
+    Wake up each morning and CHARGE straight ahead to accomplish your goals.
+    No obstacles get in the way of a 3 ton snorting rhinoceros charging at full speed!
+
+    \section*{Grading \& Assignments}
+    \subsection*{List of Grades}
+    \begin{center}
+        \doublespacing
+        \begin{tabularx}{\columnwidth}{lll}
+            \textsc{Name} & \textsc{Point Value} & \textsc{Grade \%}\\
+            \hline
+            \small
+            \textsc{Prerequisite Skills Quiz} & 25 & 3\\
+            \small
+            \textsc{Participation} & 25 & 3\\
+            \small
+            \textsc{\Mobius Assignments} & 100 & 13\\
+            \small
+            \textsc{Top 4 Quizzes} & 100 & 13\\
+            \small
+            \textsc{Exam 1} & 100 & 13\\
+            \small
+            \textsc{Exam 2} & 100 & 13\\
+            \small
+            \textsc{Exam 3} & 150 & 19\\
+            \small
+            \textsc{Cumulative Final Exam} & 200 & 25\\
+        \end{tabularx}
+        \subsection*{Letter Grade Conversion\hfill}
+        \begin{tabularx}{\columnwidth}{lll}
+            \textsc{Grade \%} & \textsc{Point Value} & \textsc{Letter}\\
+            \hline
+            \small
+            90 -- 100 & $\geq 716$ & A\\
+            \small
+            80 -- 89 & 636 to 715 & B\\
+            \small
+            70 -- 79 & 556 to 635 & C\\
+            \small
+            60 -- 69 & 476 to 555 & D\\
+            \small
+            <60\% & <475 & F\\
+        \end{tabularx}
+
+        \normalsize
+    \end{center}
+    \subsection*{On Graded Work}
+    \paragraph{Prerequisite Skills Quiz}
+    This quiz provides quick and early feedback to you on your proficiency with the skills needed for this course so you know if you have the skills needed, if you need to brush up, or if you need to take a refresher course.
+    Study the \Mobius assignment ``Math Background Needed for MA 15300'' (and its worked out solutions).
+    There are \textit{eHW Flash Cards} to practice this content on \Mobius.
+
+    \paragraph{Participation}
+    Since much of the learning in this course occurs interactively during class time, to earn your participation credit in class meetings I expect you to stay until class ends as well as contribute to the learning environment of the class.
+
+    If you are blatantly not participating in class--such as being on your phone, doing homework for other classes, being disruptive, contributing to a choral ``premature departure book bag zip'', or anything to lower the class morale, you will not earn your participation points for that day.
+
+    In addition to your active participation in class meetings (15 pts), you can earn participation points by posting your self-introduction on BrightSpace (5 pts) and completing the Getting to Know You survey (5 pts).
+
+    \paragraph*{Attendance, Participation \textit{(Continued)}}
+    If you receive credit for each class meeting, you would have 100\% participation and thus a score of 15 out of 15.
+    If you were only 90\% participating, your score would be 13.5 out of 15, and so on.
+    Absences due to illness or isolation or quarantine are excused.
+
+    If you miss a class, use BrightSpace to check what you missed so you come prepared the next period.
+    You may earn back one missed day of class by attending five one-hour tutoring visits to the \href{https://www.pfw.edu/offices/learning-support/}{Tutoring Center} in \textsc{Kt} G19.
+    The following Rhino Bonus opportunities can be earned toward your participation score for +1 point each:
+    \begin{SorrellItemize}
+        \item attach a photo to your self-introduction on BrightSpace
+        \item earn a perfect score on your \Mobius Syllabus Scavenger Hunt
+        \item or post substantively to the Piazza Discussion Board
+    \end{SorrellItemize}
+    Please reach out to me for help if your life is disrupted for any reason.
+    I am here to help.
+
+    \paragraph{\Mobius}
+    Past students cite \Mobius as the key to their success.
+    You have unlimited attempts until the due date, and the highest score is taken.
+    The average score of all your best \Mobius scores (at 20 points each) is converted to a percentage and taken out of 100 points.
+
+    Please read the section on \Mobius in the General Course Information for help with how to obtain access and use eHW.
+    You are encouraged to complete the assignment multiple times (even after you have earned a perfect score).
+
+    \paragraph{Late Submissions}
+    \Mobius assignments may be submitted late for some partial credit, but certain conditions apply:
+    \begin{SorrellItemize}
+        \item for each score 90\% or higher earned before the due date in the Assignments (for a Grade) area
+        \item you may redo one past due assignment at a 10\% late penalty, \Ie{for late eHW, a score of 20 would be entered in the Brightspace grade book as a score of 18}.
+    \end{SorrellItemize}
+    Go to the tab in \Mobius called ``Rhino Opportunity'' for Late Assignments to access these after the due date. 
+    Note: late \Mobius submissions must be done before 11:59 PM, Sunday, April 28.
+
+    \textbf{Research shows that students who do this retain the material better for quizzes and tests.}
+
+    \paragraph{Assignment Errors}
+    The question bank is thoroughly checked for errors, however, there exists a policy in the case that you do find an error in an assignment.
+    If you do find that your answer is correct, and \Mobius tells you otherwise (due to mathematics, not text entry) and if you are the first to report it to the Course Coordinator, John LaMaster (\href{mailto:lamaster@pfw.edu}{lamaster@pfw.edu}), you will be awarded double points for that question.
+
+    \paragraph{Quizzes}
+    All quizzes are taken in class with paper and pencil.
+    To help make quizzes a learning experience, you can drop all but the top four quizzes (except the Department Prerequisite Quiz, which can not be dropped).
+    Quizzes serve as ``dress rehearsals'' for the tests, so high performing students find they are worth their best effort, even after earning four high scores.
+    Since I take only the sum of the top four quizzes, \textbf{there are no make-up quizzes.}
+
+    \paragraph{Chapter Exams}
+    There will be three exams (all paper), worth 100 points each.
+    Unexcused absences from exams shall result in a score of zero.
+    If an absence is unavoidable and deemed legitimate, please contact me within 24 hours of the exam (if possible, in advance) in order to schedule a make-up exam.
+
+    \paragraph{Final Exam}
+    The date of the two hour final exam will be \textbf{Monday, April 29, 3:30p---5:30p}.
+    It is a paper and pencil test.
+    The final exam covers Sections 11.4 and 11.5, and is also comprehensive (covering all material previously tested).
+
+    \section*{Course Notes}
+
+    Every lecture will have a set of notes associated with it, provided by myself.
+    These notes are written in reference-style, meaning that they contain the content of the course, but not the exposition needed to learn it.
+
+    The one ungraded responsibility of yours is to read these notes before each lecture.
+    Notes for each lecture will be uploaded 24 hours before the lecture, if not much sooner.
+    When reading the notes, you should simply \textbf{skim through them} so that you have a rough idea of what will be discussed, and you may also \textit{form some questions} heading into the lecture. 
+    
+    The detail of the notes will be such that if you have mastery of the notes, you will have mastery of the course.
+
+    \section*{Generative AI}
+
+    Generative AI is the most exciting technology to arrive in our lifetime.
+    \textit{You should be using Generative AI to enhance your learning}.
+    You simply must not use it to cheat.
+
+    A demonstration of using Generative AI as a learning supplement will be given in the first lecture.
+
+    \section*{Online Etiquette}
+
+    When communicating via email or on the section's Discord server, you are expected to behave as you would in class.
+
+    \section*{How to Maximize Success}
+
+    \paragraph{On Office Hours}
+    There is a lot of research regarding student habits and outcomes.
+    The most significant contributing factor to a student's outcome is the use of office hours.
+    Meeting with your instructor during office hours is not unlike a brief tutoring session.
+
+    It is a great way to clarify course content.
+    Simply stated, you should be meeting with me during office hours with some frequency over the semester.
+
+    \paragraph*{On \Mobius}
+    Professor LaMaster, the Course Coordinator, has gone at great lengths to set up \Mobius such that it is not just a tool that \textit{confirms} that you are learning, it also \textit{facilitates} learning through its rich feature set.
+    You are encouraged early on to invest some time to become familiar with it.
+
+    \paragraph*{On Prerequisite Material}
+    Lower-level courses have the most diverse set of students with respect to mastery of prerequisite material, and one's subjective self-assessment of mathematical ability.
+    Additionally, if you are taking this course, and if you started college immediately after high school, then you likely entered high school at the beginning of the pandemic.
+    
+    While my background is not in education, I have heard an abundant amount of anecdotes stating that the pandemic presented major hurdles in K--12 education, whose effects are still felt today.
+    I have designed a custom lesson plan for our first lecture that is a broad, yet concise survey of what I believe is the most important prerequisite material.
+
+    As given in my Statement of Purpose, I am here to serve you.
+    If you find yourself struggling with something prerequisite, I encourage you to reach out to me just as you would for the course content.
+
+    \paragraph{On the Proper Use of Powerful Resources}
+    As mentioned in the ``Generative AI'' section, there exists a vast set of remarkable tools that can assist us with learning mathematics.
+    While my focus on these tools is that of \textit{enhancing} our learning, they can obviously be used inappropriately.
+
+    I trust and respect you as students, but be warned that \textit{if} you cheat your way through the homework, your quiz and exams grades will be poor.
+    Grading for this course is designed such that high homework grades alone will not ``prop up'' your grade.
+
+    % If you cheat your way through 100-level courses, you will be in for a rude awakening when you take 200- and 300-level courses.
+
+    \paragraph{On Pace \& Overwhelm}
+    \textit{There is no substitute for daily preparation.}
+    You are encouraged to work on this course every day, rather than waiting last minute.
+    Do not confuse the ``due date'' with the ``do date.''
+    Indeed, small frequent efforts often amount to greater change than few, large efforts.
+
+\end{multicols*}
+    \section*{Useful Resources}
+
+    \subsection*{Important Dates}
+    \begin{center}
+        \onehalfspacing
+        \begin{tabularx}{\columnwidth}{ll}
+            \textsc{Date} & \textsc{Event}\\
+            \hline
+            \textsc{Monday, January 15} & \textsc{Martin Luther King, Jr. Day (No Class)}\\
+            \\
+            \textsc{Thursday, January 18} & \textsc{Departmental Prerequisite Skills Quiz is Due}\\
+            \\
+            \textsc{Thursday, February 1} & \textsc{Exam 1}\\
+            \\
+            \textsc{Thursday, February 29} & \textsc{Exam 2}\\
+            \\
+            \textsc{Monday, March 4 --- Friday, March 8} & \textsc{Spring Break}\\
+            \\
+            \textsc{Sunday, March 10} & \textsc{IUFW Last Day to Withdraw with Grade of W}\\
+            \\
+            \textsc{Friday, March 15} & \textsc{PFW Last Day to Withdraw with Grade of W}\\
+            \\
+            \textsc{Thursday, April 18} & \textsc{Exam 3}\\
+            \\
+            \textsc{11:59p, Sunday, April 28} & \textsc{Late Submission Deadline}\\
+            \\
+            \textsc{3:30p --- 5:30p, Monday, April 29} & \textsc{Departmental Final Exam}\\
+        \end{tabularx}
+    \end{center}
+
+There are several ways you can keep track of deadlines in this course,
+\begin{SorrellItemize}
+    \item use the calendar on BrightSpace
+    \item use the BrightSpace Pulse App to receive notifications (directions on acquiring this are in the checklist in the Start Here module)
+    \item use the calendar on \Mobius
+\end{SorrellItemize}
+
+\newpage
+\subsection*{Tentative Calendar}
+
+As changes inevitably become necessary, the up-to-date calendar will exist as a document on BrightSpace.
+% \newcommand\CalendarCell[1]{\footnotesize\textsc{#1}}
+% \newcommand\CalendarItemSection[2]{\textbf{#1} #2}
+% \newcommand\CalendarItemAssignment[1]{\color{DeepGold}{#1}}
+\textbf{This syllabus will not receive updates to the calendar.}
+    \begin{center}
+        \onehalfspacing
+        \begin{tabularx}{\columnwidth}{lXXX}
+            \textsc{Week} & \textsc{Tuesday} & \textsc{Thursday} & \textsc{Other}\\
+            \hline
+            \small\textsc{1 : Jan 7---12} & \CalendarCell{Review of Prerequisite Material} & \CalendarCell{\CalendarItemSection{1.1}{Relations \& Functions}\newline\CalendarItemSection{1.2}{Avg Rate of Change}} \\
+            \\
+            \small\textsc{2 : Jan 14---19} & \CalendarCell{\CalendarItemSection{1.3}{Formulas of Lines with Initial Value}\newline\CalendarItemSection{1.4}{Formulas of Lines without Initial Value}\newline\CalendarItemAssignment{\Mobius HW 0 Due}\newline\CalendarItemAssignment{Syllabus Scavenger Hunt Due}} & \CalendarCell{\CalendarItemSection{1.4}{Formulas of Lines without Initial Value}\newline\CalendarItemSection{1.5}{Modeling with Linear Functions}\newline\CalendarItemAssignment{Prereq. Quiz}} & \CalendarCell{Wed: \CalendarItemAssignment{\Mobius Math Background Due}} \\
+            \\
+            \small\textsc{3 : Jan 21---26} & \CalendarCell{\CalendarItemSection{2.1}{Input \& Output}\newline\CalendarItemSection{2.2}{Domain \& Range}} & \CalendarCell{\CalendarItemSection{2.2}{Domain \& Range}\newline\CalendarItemAssignment{Quiz 1 (\S 1.1--1.5)}} & \CalendarCell{Mon: Guest Access to \Mobius expires at 11:59p\newline Wed: \CalendarItemAssignment{\Mobius HW 1 \& 2 Due}}\\
+            \\
+            \small\textsc{4 : Jan 28---Feb 2} & \CalendarCell{\CalendarItemSection{2.5}{Composition of Functions}\newline\CalendarItemSection{2.6}{Concavity}\newline\CalendarItemAssignment{Quiz 2 (\S 2.1--2.2)}} & \CalendarCell{\CalendarItemAssignment{Exam 1 (\S 1.1--1.5, 2.1, 2.2)}} & \CalendarCell{Mon: \CalendarItemAssignment{\Mobius HW 3 Due}}\\
+            \\
+            \small\textsc{5 : Feb 4---9} & \CalendarCell{\CalendarItemSection{4.1}{Exponential Growth \& Decay}\CalendarItemAssignment{\Mobius HW 4 Due}} & \CalendarCell{\CalendarItemSection{4.2}{Finding Formulas of Exponential Functions...}\newline\CalendarItemAssignment{Quiz 3 (\S 2.5, 2.6)}} & \CalendarCell{}\\
+            \\
+            \small\textsc{6 : Feb 11---16} & \CalendarCell{\CalendarItemSection{4.3}{Graphs of Exponential Functions, Horizontal Asymptotes}\newline\CalendarItemSection{4.4}{What is $e$?}\newline\CalendarItemAssignment{\Mobius HW 5 Due}} & \CalendarCell{\CalendarItemSection{4.4}{},\CalendarItemSection{4.5}{Compound $n$ times per year, Continuously}\newline\CalendarItemSection{5.1}{What is a logarithm?}\newline\CalendarItemAssignment{Quiz 4 (\S 4.1, 4.2)}} & \CalendarCell{}\\
+            \\
+            \small\textsc{7 : Feb 18---23} & \CalendarCell{\CalendarItemSection{5.1}{What is a logarithm?}\newline\CalendarItemSection{}{Properties of Logarithms}\newline\CalendarItemAssignment{\Mobius HW 6 Due}} & \CalendarCell{\CalendarItemSection{5.1}{Using Inverse Properties to Solve Eqn's}\newline\CalendarItemSection{5.2}{Doubling Time}\newline\CalendarItemAssignment{Quiz 5 (\S 4.3--4.5)}} & \CalendarCell{}\\
+            \\
+            \small\textsc{8 : Feb 25---Mar 1} & \CalendarCell{\CalendarItemSection{5.2}{Half Life}\newline\CalendarItemSection{5.3}{Graph of the Logarithm, Vertical Asymptotes}} & \CalendarCell{\CalendarItemAssignment{Exam 2 (\S 2.5, 2.6, Ch. 4)}} & \CalendarCell{}\\
+            \\
+            \small\textsc{9 : Mar 10---15} & \CalendarCell{\CalendarItemSection{5.3}{Logs as Re-Expressions of Quantities}\newline\CalendarItemSection{2.4/6.1}{Translations of Functions}\newline\CalendarItemAssignment{\Mobius HW 7 Due}} & \CalendarCell{\CalendarItemSection{6.1}{Reflections}\newline\CalendarItemAssignment{Quiz 6 (\S 5.1)}} & \CalendarCell{Sun: IUFW Last Day to Withdraw\newline Fri: PFW Last Day to Withdraw}\\
+        \end{tabularx}
+        \newpage
+        \begin{tabularx}{\columnwidth}{lXXX}
+            \textsc{Week} & \textsc{Tuesday} & \textsc{Thursday} & \textsc{Other}\\
+            \hline
+            \small\textsc{10 : Mar 17---22} & \CalendarCell{\CalendarItemSection{6.2}{Vertical Stretches, Compressions}\newline\CalendarItemSection{6.1}{Symmetry of Even, Odd Functions}\newline\CalendarItemAssignment{\Mobius HW 8 Due}} & \CalendarCell{\CalendarItemSection{3.1}{Quadratic Functions}\newline\CalendarItemAssignment{Quiz 7 (\S 5.2, 5.3)}} & \CalendarCell{}\\
+            \\
+            \small\textsc{11 : Mar 24---29} & \CalendarCell{\CalendarItemSection{3.2}{Applications of Quadratics}\newline\CalendarItemAssignment{\Mobius HW 9 Due}} & \CalendarCell{\CalendarItemSection{11.1}{Power Functions}\newline\CalendarItemAssignment{Quiz 8 (\S 2.4, 6.1, 6.2)}} & \CalendarCell{}\\
+            \\
+            \small\textsc{12 : Mar 31---Apr 5} & \CalendarCell{\CalendarItemSection{11.1}{Finding the Formula of a Power Function}\newline\CalendarItemSection{11.2}{Intro to Polynomials, Long Run Behavior}\newline\CalendarItemAssignment{\Mobius HW 10 Due}} & \CalendarCell{\CalendarItemSection{11.3}{Short Run Behavior}\newline\CalendarItemAssignment{Quiz 9 (\S 3.1, 3.2)}} & \CalendarCell{}\\
+            \\
+            \small\textsc{13 : Apr 7---12} &\CalendarCell{\CalendarItemSection{11.3}{Short Run Behavior}\newline\CalendarItemSection{11.4}{Intro to Rational Functions, Long Run Behavior}\newline\CalendarItemAssignment{\Mobius HW 11 Due}\newline\CalendarItemAssignment{\Mobius HW 12 Due}} & \CalendarCell{\CalendarItemSection{11.4}{},\CalendarItemSection{11.5}{Asymptotes \& Intercepts}\newline\CalendarItemAssignment{Quiz 10 (\S 11.1--11.3)\newline\CalendarItemAssignment{\Mobius HW 13 Due}}} & \CalendarCell{} \\
+            \\
+            \small\textsc{14 : Apr 14---19} & \CalendarCell{\CalendarItemSection{11.5}{Finding the Formula of a Rational Function}} & \CalendarCell{\CalendarItemAssignment{Exam 3 (\S 5.1--5.3, 2.4/6.1, 6.2, 3.1, 3.2, 11.1--11.3)}} & \CalendarCell{}\\
+            \\
+            \small\textsc{15 : Apr 21---26} & \CalendarCell{Review\newline\CalendarItemAssignment{\Mobius HW 14 Due}\newline\CalendarItemAssignment{\Mobius HW 15 Due}} & \CalendarCell{Review\newline\CalendarItemAssignment{Quiz 12 (\S 11.4, 11.5)}} & \CalendarCell{}\\
+            \\
+            \small\textsc{16 : Apr 28---May 3} & \CalendarCell{} & \CalendarCell{} & \CalendarCell{Sun: \CalendarItemAssignment{Late Submission Deadline for \Mobius}\newline Mon: Final Exam (3:30p)}\\
+        \end{tabularx}
+    \end{center}
+    \newpage
+
+
+
+    \subsection*{Domain-Specific Resources}
+    \begin{center}
+        \onehalfspacing
+        \begin{tabularx}{\columnwidth}{lll}
+            \textsc{Name} & \textsc{Description} & \textsc{Notes}\\
+            \hline
+            \href{https://chat.openai.com}{\textsc{ChatGPT Plus}} & \textsc{Learning Assistant} & \textsc{Do not use free version}\\
+            \\
+            \href{https://tutorial.math.lamar.edu/Classes/Alg/Alg.aspx}{\textsc{Paul's Math Notes}} &\textsc{Computation Engine (Step-by-Step Solutions)} & \textsc{High-Quality Notes}\\
+            \\
+            \href{https://wolframalpha.com}{\textsc{Wolfram Alpha}} &\textsc{Computation Engine (Step-by-Step Solutions)} & \textsc{Has Student Discount}\\
+            \\
+            \href{https://mathworld.wolfram.com/}{\textsc{Wolfram MathWorld}} & \textsc{Curated Wiki} & \textsc{An Under-Utilized Resource}\\
+            \\
+            \href{https://proofwiki.org/wiki/Main_Page}{\textsc{ProofWiki}} & \textsc{Curated Wiki of Proofs} & \textsc{Useful for Clarification} \\
+            \\
+            \href{https://notion.so}{\textsc{Notion}} & \textsc{Note and Data Management Tool} & \textsc{Free, Used by Instructor} \\
+        \end{tabularx}
+    \end{center}
+    
+    \subsection*{General Resources}
+    \begin{center}
+        \onehalfspacing
+        \begin{tabularx}{\columnwidth}{lXX}
+            \textsc{Issue} & \textsc{Contact} & \textsc{Contact Information}\\
+            \hline
+            \textsc{General Needs} & \textsc{Academic Services, Technology Services, Health \& Wellness, and Support from Administrative Offices} & \textsc{\href{https://www.pfw.edu/offices/enhancement-learning-teaching/pedagogical-resources/student-support-services}{Student Support Services Website}}\\
+            \\
+            \textsc{PFW Account, BrightSpace} &\textsc{Information \& Technology Services (ITS) Help Desk} & \href{tel:12604816030}{+1 260 481 6030}\newline\href{mailto:helpdesk@pfw.edu}{helpdesk@pfw.edu}\\
+            \\
+            \textsc{Purchasing \Mobius} & \textsc{Digital Ed Customer Support} & \href{tel:18334502211}{+1 833 450 2211}\newline\href{mailto:support@digitaled.com}{support@digitaled.com} \\
+            \\
+            \textsc{Troubleshooting eHW} & \textsc{eHW Technical Support} & \href{mailto:ehwtechsupport@pfw.edu}{ehwtechsupport@pfw.edu} \\
+            \\
+            \textsc{Graphing Calculator Rental} & \textsc{Student Government} & \textsc{Walb 225}\newline\href{tel:12604816586}{+1 260 481 6586}\newline\href{https://www.pfw.edu/student-government/services/rentals}{\textsc{Calculator Rental Website}}\\
+            \\
+            \textsc{Using \Mobius} & \textsc{``General Course Information'' in BrightSpace (check this first), \Mobius Support Website} & \href{https://digitaled.com/support/help/Content/Students Home.htm}{\textsc{\Mobius Support Website}}\\
+            \\
+            \textsc{Tutoring} & \textsc{Online \& Face-to-Face Tutoring in Kettler} & \href{https://www.pfw.edu/offices/learning-support/math-science-testing-center/}{\textsc{Math Tutoring Website}}\\
+            \\
+            \textsc{Short-Term Counseling (Free)} & \textsc{Campus Health Clinic} & \textsc{24-Hour Hotline:} \href{tel:18003425653}{+1 800-342-5653}\newline\href{https://www.bowencenter.org/scheduleappointment}{\textsc{Website}}\\
+            \\
+            \textsc{Withdrawing from the Class} & \textsc{Student Success \& Transitions} & \href{tel:12604810404}{+1 260 481 0404}\newline\href{mailto:withdraw@pfw.edu}{withdraw@pfw.edu}\newline\href{https://www.pfw.edu/sst}{Student Success \& Transitions Website}\\
+        \end{tabularx}
+        \newpage
+        \begin{tabularx}{\columnwidth}{lXX}
+            \textsc{Issue} & \textsc{Contact} & \textsc{Contact Information}\\
+            \hline
+            \textsc{Accommodations for Students with Disabilities} & \textsc{Disability Access Center} & \textsc{Walb 113}\newline\href{tel:12604816658}{+1 260 481 6658}\newline\href{https://www.pfw.edu/dac}{\textsc{DAC Website}}\\
+            \\
+            \textsc{How to Succeed in MA 15300} & \textsc{Students Previously Enrolled} & \href{https://users.pfw.edu/lamaster/ma153/SP21/tipstoyoufromPastMA153Students.htm}{\textsc{Tips from Previous Students}}\\
+            \\
+            \textsc{When Unsure Whom to Contact} & \textsc{CARE Team} & \href{tel:12604816601}{+1 260 481 6601}\newline\href{https://www.pfw.edu/offices/dean-of-students/about/care-team}{\textsc{CARE Team Website}}\\
+        \end{tabularx}
+    \end{center}
+    \normalsize
+    \subsection*{Statement for Students with Disabilities}
+    If you have a disability and need assistance, special arrangements can be made to accommodate most needs.
+    Contact the Director of the Disability Access Center (Walb Union, Room 113, telephone number \href{tel:12604816658}{481-6658}) as soon as possible to work out the details.
+    Once the Director has provided you with a letter attesting to your needs for modification, bring the letter to me.
+    For more information, please visit the Web site for Disability Access Center (DAC) and refer to the DAC Student Handbook.
+
+\section*{Withdrawing from the Course}
+
+If you find yourself overwhelmed or in the wrong class, below is the fee remission schedule. 
+However, if you drop this class and then add another math course to your schedule such as \textsc{Ma} 11100, \textsc{Stat} 12500, or \textsc{Ma} 14000 within the first four weeks, there is no loss of fee.
+
+    \begin{center}
+        \onehalfspacing
+        \begin{tabular}{lll}
+            \textsc{Date} & \textsc{PFW Students} & \textsc{IUFW Students}\\
+            \hline
+            \textsc{Sunday, January 14} & 100\% Refund & 100\% Refund\\
+            \\
+            \textsc{Sunday, January 21} & 60\% Refund & 75\% Refund\\
+            \\
+            \textsc{Sunday, January 28} & 40\% Refund & 50\% Refund\\
+            \\
+            \textsc{Sunday, February 4} & 60\% Refund & 25\% Refund\\
+            \\
+            \small\textbf{Last Day to Withdraw with Grade of W (0\% Refund)} & \normalsize\textbf{Friday, March 15} & \textbf{Sunday, March 10}\\
+        \end{tabular}
+    \end{center}
+
+If you do wish to drop the class, please make sure you officially process your withdrawal rather than simply stop attending. 
+To officially process a withdrawal, log in to \href{https://go.pfw.edu}{GoPFW}, click on the \textit{Enrollment} tab, and submit the form titled \textit{Course Withdrawal (After Full Refund Period)}. This would only put a grade of W on your record instead of a grade of F. 
+
+An 8 week online MA 15300 course will begin March 11, 2024 to provide an alternative to those who have a rough start to the semester and want a fresh attempt. \hfill $\square$
+
+Thank you for your time taken to read this syllabus.
+We can accomplish great things this semester; I look forward to it.
+
+
+
+\end{document}

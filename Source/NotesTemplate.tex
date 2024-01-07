@@ -1,0 +1,1240 @@
+% File:      NotesTemplate.tex
+% Author:    Gage Sorrell <gsorrell@purdue.edu>
+% Copyright: (c) 2024 Gage Sorrell
+% License:   MIT
+
+\documentclass[letterpaper,twoside]{article}
+
+% Packages
+
+\usepackage[english]{babel}          % Common package
+\usepackage[utf8]{inputenc}          % Common package
+\usepackage[margin=0.5in,bottom=0.75in]{geometry} % Page margins
+\usepackage{amsmath}                 % General math
+\usepackage{amssymb}                 % For defining \RealExpressions
+\usepackage{graphicx}                % For `\includegraphics{}`
+\usepackage{setspace}                % For `\onehalfspacing`
+\usepackage{float}                   % Position options for `\includegraphics{}`
+\usepackage{amsfonts}                % `\mathbb{}`, etc.
+\usepackage{ragged2e}                % For justified text
+\usepackage{tocloft}                 % For customizing the Table of Contents
+\usepackage{xcolor}                  % To use colors
+% \usepackage{tcolorbox}               % For boxed text
+\usepackage{emoji}                   % For emoji
+\usepackage{makecell}                % For linebreaks in table cells
+\usepackage{fancyhdr}                % For the header and footer
+\usepackage{multicol}                % Two-column layout
+\usepackage{enumitem}                % Set margins within itemize environments
+\usepackage{titlesec}                % For adjusting the space above and below section titles
+\usepackage{tikz}                    % For unit vectors
+\usepackage{mathtools}               % For :=
+
+% Variables
+
+\def\Author{Gage Sorrell}
+\def\BulletPointSeparator{\SmallHSpace$\cdot$\SmallHSpace}
+\def\CourseName{MA 15300-02}
+\def\CourseNameFriendly{College Algebra}
+\def\DocumentTitle{MA153 Notes Day \LectureDay Week \LectureWeek}
+\def\LectureDay{1}
+\def\LectureWeek{1}
+\def\SmallHSpace{\hspace*{1mm}}
+
+% Commands
+
+\newcommand{\Eg}[1]{\textit{e.g.}, #1}
+\newcommand\Ie[1]{\textit{i.e.}, #1}
+
+% Define the command for a stylized definition
+% #1 - Term to be defined
+% #2 - Definition of the term
+\newcommand{\DefinedTerm}[1]{\textbf{#1}}
+\newcommand{\Definition}[1]{%
+    % \begin{tcolorbox}[enhanced jigsaw, % Allows box to break across pages
+    %                 %   colback=blue!5, % Background color
+    %                   colback=white, % Background color
+    %                   colframe=blue!75!black, % Frame color
+    %                   arc=0mm, % Removes rounded corners
+    %                   boxrule=0.5pt, % Frame thickness
+    %                   top=2pt, bottom=2pt, left=5pt, right=5pt] % Spacing around the text
+    % \emoji{book} \textbf{Definition.}\SmallHSpace #1
+    % \end{tcolorbox}
+    \emoji{book} \textbf{Definition.}\SmallHSpace #1 \hfill $\square$
+}
+
+\newcommand{\Note}[1]{%
+    \emoji{warning} \textbf{Note.}\SmallHSpace #1 \hfill $\square$
+}
+
+\newcommand{\Paradox}[1]{%
+    \emoji{police-car-light} \textbf{Paradox.}\SmallHSpace #1 \hfill $\square$
+}
+
+\newcommand{\Example}[1]{%
+    \emoji{magnifying-glass-tilted-right} \textbf{Example.}\SmallHSpace #1 \hfill $\square$
+}
+
+\newcommand{\Theorem}[1]{%
+    \emoji{thinking-face} \textbf{Theorem.}\SmallHSpace #1 \hfill $\square$
+}
+
+\newcommand{\Proof}[1]{%
+    % \begin{tcolorbox}[enhanced jigsaw, % Allows box to break across pages
+    %                 %   colback=blue!5, % Background color
+    %                   colback=white, % Background color
+    %                   colframe=blue!75!black, % Frame color
+    %                   arc=0mm, % Removes rounded corners
+    %                   boxrule=0.5pt, % Frame thickness
+    %                   top=2pt, bottom=2pt, left=5pt, right=5pt] % Spacing around the text
+    % \emoji{book} \textbf{Definition.}\SmallHSpace #1
+    % \end{tcolorbox}
+    \emoji{brain} \textbf{Proof.}\SmallHSpace #1 \hfill $\square$
+}
+
+\newcommand{\Lemma}[1]{%
+    % \begin{tcolorbox}[enhanced jigsaw, % Allows box to break across pages
+    %                 %   colback=blue!5, % Background color
+    %                   colback=white, % Background color
+    %                   colframe=blue!75!black, % Frame color
+    %                   arc=0mm, % Removes rounded corners
+    %                   boxrule=0.5pt, % Frame thickness
+    %                   top=2pt, bottom=2pt, left=5pt, right=5pt] % Spacing around the text
+    % \emoji{book} \textbf{Definition.}\SmallHSpace #1
+    % \end{tcolorbox}
+    \emoji{thinking-face} \textbf{Lemma.}\SmallHSpace #1 \hfill $\square$
+}
+
+\newcommand{\Tldr}[1]{%
+    % \begin{tcolorbox}[enhanced jigsaw, % Allows box to break across pages
+    %                 %   colback=blue!5, % Background color
+    %                   colback=white, % Background color
+    %                   colframe=blue!75!black, % Frame color
+    %                   arc=0mm, % Removes rounded corners
+    %                   boxrule=0.5pt, % Frame thickness
+    %                   top=2pt, bottom=2pt, left=5pt, right=5pt] % Spacing around the text
+    % \emoji{book} \textbf{Definition.}\SmallHSpace #1
+    % \end{tcolorbox}
+    \emoji{stopwatch} \textbf{Summary.}\SmallHSpace #1 \hfill $\square$
+}
+
+% Configuration
+
+\author{\Author}
+\onehalfspacing
+\setlength{\parindent}{0pt}
+\title{\DocumentTitle}
+
+% TOC
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\tocloftpagestyle{empty}
+
+% \tcbuselibrary{skins,breakable} % Extra features for tcolorbox
+\setlength{\parskip}{3mm}
+\setlength{\columnsep}{0.5in}
+\titlespacing*{\section}{0pt}{4pt}{0pt}
+\titlespacing*{\subsection}{0pt}{4pt}{0pt}
+\titlespacing*{\subsubsection}{0pt}{4pt}{0pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headwidth}{7.25in}
+\fancyhead[L]{\textsc{\CourseName}}
+\fancyhead[R]{\textsc{Day} \LectureDay \ \textsc{Week} \LectureWeek}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyfoot[L]{\textsc{Purdue University Fort Wayne}}
+\fancyfoot[R]{Page \thepage}
+
+% Environments
+
+\newenvironment{SorrellEnumerate}
+{
+    \setlength\parskip{-5pt}
+    \begin{enumerate}
+        \setlength\itemsep{-4pt}
+}{
+    \end{enumerate}
+}
+
+\newenvironment{SorrellItemize}
+{
+    \setlength\parskip{-5pt}
+    \begin{itemize}[leftmargin=11pt]
+        \setlength\itemsep{-4pt}
+}{
+    \end{itemize}
+}
+
+% END PREAMBLE %
+
+\begin{document}
+
+\begin{titlepage}
+    \newgeometry{margin=1.25in}
+    \begin{figure}[t]
+        \centering
+        \includegraphics[width=1.5in]{../Resources/Letterhead.png}
+    \end{figure}
+    \vspace*{0.5in}
+    \begin{center}
+        \huge
+        \textsc{Lecture Notes}
+        
+        \normalsize
+        \CourseName \BulletPointSeparator \Author
+
+        \vspace*{0.25in}
+        \large
+        \begin{table}[H]
+            \centering
+            \begin{tabular}{ll}
+                \textsc{Lecture} \textnumero & \textsc{day 1 week 1}              \\
+                \textsc{Date}                & \textsc{january 9, 2024 (tuesday)}
+            \end{tabular}
+        \end{table}
+        \begin{table}[H]
+            \centering
+            \begin{tabular}{ll}
+                \textsc{Topics} & \textsc{Textbook Section(s)}\\
+                \hline
+                Instructor Introduction & \textit{None}\\
+                Logic & \textit{None} \\
+                Sets & \textit{None} \\
+                Relations & \textbf{1.1} \\
+                The Complete Ordered Field, $\mathbb{R}$ & \textit{None} \\
+            \end{tabular}
+        \end{table}
+        \vspace*{\fill}
+        \footnotesize
+        \justifying
+        \leftskip=0.75in
+        \rightskip=0.75in
+        \paragraph*{Objective}
+        In my experience with math students, difficulty with course content is often rooted in small misunderstandings of fundamental (\Ie{prerequisite}) material.
+        I have identified five topics of prerequisite material that I believe are the biggest ``pain points.''
+        In this lecture, we will achieve a shared understanding and language of these topics, to maximize our success in the course.
+    \end{center}
+\end{titlepage}
+
+\newpage
+\newgeometry{margin=1.875in}
+\tableofcontents
+\newpage
+\restoregeometry
+\newgeometry{inner=0.75in,outer=0.5in,top=0.75in,bottom=0.75in}
+\setcounter{section}{-1}
+\setcounter{page}{1}
+
+\begin{multicols}{2}
+
+% \section{Syllabus Q \& A}
+
+% Before beginning the lecture, we will do the following:
+
+% \begin{SorrellEnumerate}
+%     \item Instructor introduction
+%     \item Take any questions regarding the syllabus
+%     \item Highlight key parts of the syllabus
+%     \item Perform a demonstration of generative AI for learning course content
+% \end{SorrellEnumerate}
+
+\section{Preface}
+
+% \Tldr
+% {
+%     This lecture covers material that you have seen before, \textit{and} foundational content that formally defines this material.
+%     Some of this content will be material that you have seen before, but is stated in a way that you may not have seen before.
+%     \textbf{Do not worry when you see material that is new to you.}
+% }
+
+This lecture contains formalizations for the set of concepts that I have (subjectively) identified to be the most important prerequisite material.
+
+By giving formalizations (explicit, well-defined formulations) of this prerequisite content, we can achieve a shared language and perspective regarding the content.
+This should prevent misunderstandings of the course content.
+
+Most of this content \textit{describes} content that is prerequisite, but itself is not prerequisite.
+The content that \textit{is} prerequisite (field axioms, order, and other miscellaneous items) are formulated in a way that might not feel familiar to you.
+Therefore, \textbf{do not worry if this content feels unfamiliar.}
+
+This is the only lecture in which we skim through (or even skip) some sections; we will come back to these notes later in the semester, when we have good examples that are justified by these sections.
+
+% The first 80\% of the content will be \textit{foundational} material, such that it \textit{describes} prerequisite material, but is not ``prerequisite'' in the sense that you must have seen it before.
+% This first 80\% should feel new to some extent, and will equip us with a set of knowledge that we will refer back to later in the course.
+
+% The field axioms are the only content such that unfamiliarity of that content is a cause for concern.
+
+% To give an analogy that justifies this lecture, consider someone learning how to swim.
+% If one reads a book that teaches how to swim, one will not yet be able to swim until one actually gets into the water, tries to swim, and struggles.
+% Still, even though the book does not fully prepare one to swim, the information in it acts as a reference, which is valuable (and makes sense) later on.
+
+% Similarly, this lecture contains statements whose significance or meaning will not be immediately clear, but we will benefit later on to know this content.
+
+\section{First-Order Logic}
+
+To work with problems, we need a language to form statements about them.
+
+\Definition
+{
+    \DefinedTerm{First-order logic} (also called \textit{predicate logic}) is the system of logic that we use to construct \textit{rigorous} and \textit{well-defined} statements.
+}
+
+Effective problem-solving requires us to take our ideas and translate them into logical statements.
+
+\Definition
+{
+    \DefinedTerm{Statements} are finite sequences of the following,
+    \begin{SorrellItemize}
+        \item predicates: symbols that represent a property of a variable
+        \item quantifiers: existential (``there exists'', $\exists$), and universal (``for all'', $\forall$)
+        \item connectives:
+        \begin{SorrellItemize}
+            \item conjunction (``and,'' $\land$)
+            \item disjunction (``or,'' $\lor$)
+            \item implication (``if, then,'' $\Longrightarrow$)
+            \item logical equivalence (``if and only if,'' ``iff,'' $\Longleftrightarrow$)
+        \end{SorrellItemize}
+        \item variables: something that is interpreted, \Eg{``the first day of the week'', $x$, $P$}
+        \item negation: the unary operator, $\lnot$, that ``flips'' the truth value of a statement
+        \item braces and parentheses: to group symbols (and to make statements easier to read)
+    \end{SorrellItemize}
+}
+
+The symbols $P$ and $Q$ are often used to denote two, arbitrary statements.
+
+Statements are evaluated as being true or false, by interpreting (giving meaning to) its variables.
+The statements that we will use are in natural language, formal notation, and a combination of both.
+
+Statements are true when they are ``in accordance with reality.''
+
+\subsection{Connectives}
+
+Here are some informal definitions of the connectives,
+\begin{SorrellItemize}
+    \item $P\land Q$ tells us that \textit{both} $P$ and $Q$ are true
+    \item $P\lor Q$ tells us that \textit{at least one of} $P$ or $Q$ are true
+    \item $P\Longrightarrow Q$ tells us that $Q$ is true when $P$ is true
+    \item $P\Longleftrightarrow Q$ tells us that $P$ and $Q$ have the same meaning
+\end{SorrellItemize}
+
+% Statements are often formed by chaining predicates together with connectives.
+% The simplest way to define and demonstrate the meaning of the connectives is to construct a \textit{truth table}.
+
+% \Definition
+% {
+%     A \DefinedTerm{truth table} is an enumeration of all values that a connective can give, given the state of its inputs.
+% }
+
+% For two arbitrary statements, $P$ and $Q$,
+
+% These are the truth tables of conjunction (``and'', $\land$) and disjunction (``or'', $\lor$).
+
+% When working toward the solution of a problem, we often use implication, $P \Longrightarrow$ Q, to chain our ideas together to arrive to conclusions.
+
+% A statement does not always \textit{directly} follow from a previous statement, but follows in some loose sense.
+% When this happens, we use the $\rightsquigarrow$ symbol, \Eg{Student does not study $\rightsquigarrow$ Student scores low on exam}.
+
+\subsection{The Natural World, Material}
+
+Statements are \textit{expressed}, meaning that they must exist in some \textit{material} sense, such as spoken words, or symbols written on paper.
+
+These symbols are ``real'' in a \textbf{material} sense, while the meaning of the statement itself ``exists'' only in an abstract sense.
+
+\Definition
+{
+    The \DefinedTerm{natural world} contains all material objects, \textit{i.e.}, statements do not exist in the material world, but \textit{representations} of them do.
+}
+
+This distinction will come up at times, to clarify meaning behind various concepts in the course, and how we apply them.
+
+% \subsection{Truth}
+
+% \Definition
+% {
+%     A statement is \DefinedTerm{true} when it is in accordance with reality.
+% }
+
+% Statements \textit{evaluate} to true or false, via our interpretation of the meaning of its symbols, \Ie{the language that we use}.
+% Statements that contain predicates necessarily contain variables, whose values must be interpreted (``filled in'') before evaluation.
+
+% \textit{Some} open statements can be evaluated without filling in its variables.
+% These statements are \textit{tautologies}, which are always true, regardless of what values are used in place of the variables.
+
+% Some examples of tautologies are,
+
+% @TODO
+
+\subsection{Rules of Inference}
+
+Finally, two important \textit{rules of inference},
+\end{multicols}
+\begin{table}[H]
+    \centering
+    \footnotesize
+    \begin{tabular}{lll}
+        \textsc{Name} & \textsc{Formulation} & \textsc{Example}\\
+        \hline
+        \textit{modus ponens} & $\bigg(F, F \Longrightarrow G \bigg) \Longrightarrow G$ & \makecell[l]{If the man is wearing a crown, and if wearing the crown means\\they are the King, then the man is the King.}\
+        \\
+        \textit{modus tollens} & $\bigg(F \Longrightarrow G, \lnot G \bigg) \Longrightarrow \lnot G$ & \makecell[l]{If someone is the King, then they wear a crown.\\The man is not wearing a crown, therefore he is not the King.}\\
+    \end{tabular}
+    \normalsize
+\end{table}
+
+\begin{multicols}{2}
+
+A lot of homework solutions take the form of these two rules of inference, in which the problem gives us some statement as being true, and we string together many statements to arrive to the solution.
+
+In fact, there is a style of proof-writing (\Ie{writing rigorous statements that prove a statement's truthiness}), called the  ``two-column'' proof, in which we write rows of statements in this form:
+
+\begin{align*}
+    \text{\textit{Starting assumption}}&   \hspace{0.125in} &&(\text{Given})\\
+    P_0& &&(\text{\textit{Justification}})\\
+    P_1& &&(\text{\textit{Justification}})\\
+    \vdots& \\
+    \text{\textit{Conclusion}}& &&(\textit{\text{Justification}})\\
+\end{align*}
+
+Although the arrows are not drawn, every statement implies the statement after it.
+For each statement, a small clarifying statement is given to explain why that statement is implied by the statement before it.
+Sometimes, the justification can also introduce new information, \Ie{$P_{n - 1}$ \textbf{and} the $n$th justification imply $P_n$}.
+
+$P_n$ are typically in formal notation, but they need not be.
+Similarly, the justifications are typically written in natural language, but they need not be.
+
+It will benefit you to use this format for nearly all of your work.
+
+% In mathematics, we like to make statements that abstract away as much of the material world as possible, meaning that we wish to form statements whose truth does not depend upon on the state of the natural world.
+% Statements in this form are generalized, and therefore are applicable to more phenomena, making the statements more powerful.
+
+% In general, statements are applicable to more phenomena (and therefore are more useful) when they are more \textit{general}, \Ie{they describe abstract notions instead of material phenomena}.
+
+% \Paradox
+% {
+%     Statements can be \textit{in accordance with reality} despite not directly stating anything about the material world.
+%     For example, the statement ``the cube of every odd integer is also odd'' is a statement about \textit{numbers}, rather than something material.
+% }
+
+% The solution to this paradox is that these abstract notions, such as the number, are used to describe the natural world.
+
+% \subsection{Logical Equivalence, $\Longleftrightarrow$}
+
+% \Definition
+% {
+%     Two statements are \DefinedTerm{logically equivalent} ($P \Longleftrightarrow Q$) if and only if they imply each other.
+% }
+
+% Logically equivalent statements have distinct sequences of terms, but they have the same meaning, even if it is not obvious why.
+
+% Logically equivalent statements often let us make significant progression in problem-solving because they let us ``jump'' between different concepts that apply to a given problem.
+
+% \Example
+% {
+%     Someone having a student ID implies that they are a student, and being a student implies having a student ID.
+%     This means that being a student and having a student ID are, in some sense, the ``same'', despite not being identical.
+% }
+
+\section{Sets}
+
+\Definition
+{
+    A \DefinedTerm{set} is a collection of objects.
+}
+\Definition
+{
+    An \DefinedTerm{object} is a ``thing'', material or abstract.
+}
+
+The set is perhaps the most fundamental concept in mathematics.
+The objects in a set are \textit{elements} of that set.
+
+Sets do not necessarily have an order defined on them, but when a set is written, its elements must be written in some order.
+This is a result of the natural world distinction that was made earlier.
+
+\Example
+{
+    Given the set containing the positive even numbers less than ten, these formulations are all equivalent,
+    \begin{equation}
+        \{ 2, 4, 6, 8 \} = \{ 4, 2, 6, 8 \} = \{ 8, 6, 4, 2 \} = \cdots
+    \end{equation}
+}
+
+\subsection{Notation}
+
+Generic sets are often represented with a capital letter, such as $S$.
+
+The symbol $\in$ is used to state that an object is in a given set.
+
+\Example
+{
+    ``Let $x : x \in \mathbb{R}$...'' defines $x$ to represent any real number; the statement $2 \in \mathbb{N}$ is an example of a true statement.
+}
+
+Sets are often defined in one of three ways:
+\begin{SorrellItemize}
+    \item Roster notation: $\{1, 3, 5, \ldots, 133\}$
+    \item Set builder notation: $\{ x : \bigwedge\limits_{P_n \in P} P_n(x) \}$
+    \item Interval notation: $(1, 2) \cup (3, \infty)$
+\end{SorrellItemize}
+
+In set builder notation, at least one $P_n$ must be defined for $x$ \textit{and} at least one free variable.
+This is required to avoid Russell's paradox.
+
+Important sets are represented with \textit{blackboard} or \textit{double-struck} letters, such as $\mathbb{Z}$ and $\mathbb{R}$.
+
+Sometimes, an arbitrary element of a set is given as a symbol, followed by a subscript $n$.
+For example, $x_n$ might be used to represent an arbitrary element in an arbitrary set $S$.
+
+\subsection{Cardinality}
+
+Sets have ``size,'' which can mean many things.
+The typical implementation of size is \textit{cardinality}, which is the number of elements in the set.
+Its notation is $|S|$ for a set $S$.
+
+There are three main classes of cardinality:
+\begin{SorrellItemize}
+    \item For a finite set, the cardinality is a natural number
+    \item For countably infinite sets, the cardinality is $\aleph_0$
+    \item For uncountably infinite sets, the cardinality is $\aleph_1$
+\end{SorrellItemize}
+
+\Note
+{
+    Imperative \textit{versus} Declarative.
+    All statements are declarations, but some statements define a set by explicitly stating what its elements are (\Ie{all elements are variables in the statement}), or they define some \textit{rule} (algorithm) to generate the elements.
+    For example, the statement ``Let $S = \{2, 4, 5\}$'' \textit{declaratively} defines $S$, but the statement ``Let $S$ be the set containing the first two positive, even integers, and the first positive integer after these'' defines the same set $S$, but does so \textit{imperatively}.
+}
+
+Because statements contain finitely-many terms, infinite sets must be defined imperatively, for example, ``Let $S$ be the set of perfect squares.''
+
+\subsection{Basic Operations}
+
+There exist a few common set operators,
+\begin{table}[H]
+    \centering
+    \begin{doublespace}
+        \setlength\tabcolsep{0pt}
+        \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}} ll}
+            \textsc{Name} & \textsc{Example} \\
+            \hline
+            Union, $\cup$                            & $\{2, 3, 5\}\cup\{1, 2, 4\} = \{1, 2, 3, 4, 5\}$ \\
+            Intersection, $\cap$                     & $\mathbb{Z}\cap\mathbb{N} = \{-1, -2, \ldots\}$ \\
+            % Complement, $\overline{S}$               & Let $S = \{1, 2, 3\}$, then in $\mathbb{N}$, $\overline{S} = \{4, 5, 6, \ldots\}$ \\
+            Difference, $\setminus$                  & $\{1, 2\} \setminus \{1\} = \{2\}$ \\
+            Subset, $\subset$                        & $\{1, 2\} \subset \{2, 3\}$ \\
+            Proper Subset, $\subseteq$               & $\mathbb{N} \subseteq \mathbb{Z}$ \\
+            \small Cartesian Product, $\times$              & $\mathbb{R} \times \mathbb{R} = \mathbb{R}^2 =$ The Real Plane \\
+        \end{tabular*}
+    \end{doublespace}
+    \normalsize
+\end{table}
+
+Two sets are equal if and only if they are subsets of each other.
+This definition is logically equivalent to stating that they are equal if and only if they contain the same elements.
+
+\subsection{Zermelo-Frankel Set Theory with the Axiom of Choice}
+
+It may be useful to explicitly state some properties that belong to all sets.
+The set theory (framework) that is used in most of mathematics today is the ZFC set theory, which is the Zermelo-Frankel set of axioms, with the additional axiom of choice (AC).
+
+The exact definitions of these axioms are tedious and require a solid understanding of first-order logic.
+Since we just want the key results anyway, I have summarized them here,
+
+\end{multicols}
+\begin{table}[H]
+    \centering
+    \begin{doublespace}
+        \setlength\tabcolsep{0pt}
+        \begin{tabular*}{0.9\linewidth}{@{\extracolsep{\fill}} ll}
+            \textsc{Name} & \textsc{Result} \\
+            \hline
+            Axiom of extensionality                  & Two sets are equal if they have the same elements \\
+            Axiom of regularity                      & No set can contain itself \\
+            Axiom schema of restricted comprehension & Sets must be defined by some external information \\
+            Axiom of pairing                         & Sets can have sets as elements \\
+            Axiom of union                           & The set union operator, $\cup$, is always defined for any two sets \\
+            Axiom schema of replacement              & For every function, the collection of images gives a set \\
+            Axiom of infinity                        & Sets can have infinitely-many elements \\
+            Axiom of power set                       & For every set, every subset can be constructed \\
+            Axiom of choice                          & The real numbers are Cauchy complete (\textit{explained later})\\
+        \end{tabular*}
+    \end{doublespace}
+    \normalsize
+\end{table}
+\begin{multicols}{2}
+
+\Note
+{
+    The axiom of choice was controversial for some time, and was not included in the original ZF axioms.
+    AC states that for any set of sets (particularly for infinite sets of sets), there exists a way to construct a new set by choosing exactly one element from each set.
+
+    Statements derived from AC often define sets, but do not define how to determine exactly what is in the set.
+    These ambiguous, imperative definitions are called \textit{non-constructive}.
+}
+
+\section{Relations, $\sim$ and $=$}
+
+\Definition
+{
+    A \DefinedTerm{relation}, defined on a set $S$ \textit{relates} elements of $S$ by \textit{assigning} elements in $S$ to other elements in $S$.
+}
+
+Relations are the fundamental objects for defining \textit{structure} on a set, allowing us to give meaning to the elements in the set.
+
+Relations can be given in the form of a set of ordered pairs, \Ie{for an arbitrary relation ``$\sim$'', we can give the definition $\sim \ : \{(a,b) : a,b \in S, \bigwedge\limits_{P_n \in P} P_n(a,b) \}$}.
+Then, $a ~ b$, given that they satisfy some set of statements $P$.
+
+\subsection{Graphs}
+
+\Definition
+{
+    Relations are often easier to interpret as well-defined pictures.
+    These pictorial representations are called \DefinedTerm{graphs}.
+}
+
+These will be elaborated on in the next lecture.
+
+\subsection{The Equivalence Relation, $=$}
+
+When a relation satisfies three properties, described below, the relation defines which elements in the set are the ``same'' in some sense.
+
+For all elements $a,b,c$ in a set, the elements are equivalent if and only if these conditions are met,
+
+\end{multicols}
+\begin{table}[H]
+    \centering
+    \doublespacing
+    \setlength\tabcolsep{0pt}
+    \begin{tabular*}{0.333\linewidth}{@{\extracolsep{\fill}} ll}
+        \textsc{Name} & \textsc{Example} \\
+        \hline
+        Reflexivity & $a = a$ \\
+        Symmetry  & $a=b \Longrightarrow b = a$ \\
+        Transitivity  & $a=b \land b=c \Longrightarrow a = c$ \\
+    \end{tabular*}
+    \normalsize
+\end{table}
+\begin{multicols}{2}
+
+\subsection{Real-Valued Expressions}
+
+It is trivial that $2 = 2$, $1 = 1$, \textit{etc}., but for the equivalence relation defined over the real numbers, this is not useful.
+Instead, it is useful to consider the equivalence relation over the set of real-valued expressions.
+
+\Definition
+{
+    The set $\mathbb{E}$ is the set of all valid finite sequences of numbers, variables, parentheses, and the operations \textit{addition, multiplication}, and \textit{exponentiation} that evaluate to real numbers.
+}
+
+This gives objects such as $1 + 4$ as well as objects like $20$.
+Nontrivial expressions give utility to the equivalence relation.
+Often, we manipulate expressions to \textit{simplify} them, either to a sequence of digits, or to another expression that is ``simplest.''
+
+\Definition
+{
+    For all closed expressions $e$, the \DefinedTerm{result} (or \DefinedTerm{simplest form}) of $e$, $\xi(e)$, is the real number represented by $e$.
+    \\
+    For open expressions, the result (or simplest form) is the equivalent, most concise expression.
+}
+
+\subsection{Equations}
+
+\Definition
+{
+    An \DefinedTerm{equation} is a statement that an equivalence relation is defined for two objects, with the notation $a = b$.
+}
+
+\Theorem
+{
+    An equivalence relation is defined on $\mathbb{E}$ such that two expressions are equal if and only if they have the same result.
+    % For all expressions $e_0, e_1 \in \mathbb{E}$, there exists an \DefinedTerm{equation} of the form $e_0 = e_1$.
+}
+
+\Proof
+{
+    \textit{(For closed expressions)}.
+    The real numbers partition the set of closed expressions into equivalence classes.
+}
+
+\Definition
+{
+   $[ e ]$ is the equivalence class of $e$, meaning that it is the set of expressions that are equal to $e$, \Ie{all elements in $[e]$ have the same result}.
+}
+
+% Equations declare that two expressions are equal, \Ie{they evaluate to the same real number}.
+
+Many problems in this course will involve constructing an equation (or being given one) that is defined for an open variable, and you must find the set of values that make the equation true.
+
+\subsection{Order of Operations, PEMDAS}
+
+Given $e$, the process of finding $\xi(e)$ is done by the \textit{order of operations}.
+To achieve this, you will often need to use the order of operations to simplify both expressions.
+
+\Definition
+{
+    The \DefinedTerm{order of operations} is a function (algorithm) defined on $\mathbb{E}$ that assigns every closed expression a real number, and assigns every open expression a ``simplest'' form, which is also an open expression.
+}
+
+The function defines a reflexive relation for all expressions that are in simplest form.
+
+The natural language definition of the order of operations partitions each expression into the following expressions,
+\begin{SorrellItemize}
+    \item Sub-expressions in parentheses (\textit{P})
+    \item Exponentiation (\textit{E})
+    \item Multiplication and Division (\textit{MD})
+    \item Addition and Subtraction (\textit{AS})
+\end{SorrellItemize}
+
+
+
+% This is also the order in which the sub-expressions are evaluated.
+
+% Students often feel that the order of operations is arbitrary, and in a way, it is!
+% For every order of operations that can be defined, there exists a way to map every expression to an equivalent expression under each other order of operations.
+% This is an example of an \textit{automorphism}.
+
+% \textit{The} order of operations is defined as it is because it allows us to easily reorder the expression (by evaluating sub-expressions in parentheses first).
+% Then, we do ``doubly compound addition'' (exponentiation), then compound addition (multiplication), before finally doing addition.
+% In this sense, we are reducing everything down to addition, before performing the final addition of terms.
+
+\subsection{Statements with Quantifiers \& Sets}
+
+We have now covered enough fundamental material to justify addressing a common point of confusion with respect to statements, sets, and expressions.
+
+Consider the following statement,
+
+``Define $x$ such that $x \in \mathbb{Z}$, and $x$ is odd.''
+
+This statement refers to $x$ as a single object ($x$ \textit{is} odd, rather than $x$ \textit{are} odd).
+However, what we are really referring to is \textit{any} value that satisfies these constraints ($x$ being an odd, and an integer).
+
+Therefore, if I say ``the cube of $x$ is also odd,'' this is a statement that refers to a single variable, $x$, \textit{but is being stated about every odd integer}.
+An equivalent statement that is more explicit about this plurality is ``\textit{for all} $x$, the cube of $x$ is also odd.''
+
+Sometimes, it is easy to leave out the quantifier ``for all,'' (either out of desire to be concise, or forgetting to include it) and it is implied.
+The implied use of ``for all'' is not always an issue, but this subtle detail can confuse some.
+
+\section{The Complete Ordered Field, $\mathbb{R}$}
+
+Elementary algebra is the arithmetic of open variables.
+Therefore, it will be useful to take a look at what defines arithmetic.
+
+This will tell us what manipulations we can make to equations of $\mathbb{E}$.
+Manipulations of this kind constitute most of the problem-solving done in this course.
+
+% This course deals with the real numbers; solutions to most problems will be sets of real numbers.
+% Thus, it will be useful to understand their properties, and where modern arithmetic comes from.
+
+\subsection{``What are the numbers, and what are they good for?''}
+
+\Definition
+{
+    A \DefinedTerm{number} is an object that implements the notion of \textit{quantity}.
+}
+
+There are many classes of objects that are numbers, like $\aleph_0$ and $\hat{\imath}$, but most numbers that we work with are real numbers.
+
+\subsection{Construction}
+
+\subsubsection{The Peano Axioms, $(\mathbb{N}, +)$}
+
+\Definition
+{
+    The \DefinedTerm{natural numbers}, $\mathbb{N}$, are the ``counting numbers'', $\{1, 2, 3,\ldots\}$
+}
+
+Peano gave an axiomatic approach to the natural numbers.
+Elaborating on these axioms allows us to consider what we can and cannot do with the natural numbers.
+
+\end{multicols}
+\begin{table}[H]
+    \centering
+    \begin{doublespace}
+        \setlength\tabcolsep{0pt}
+        \begin{tabular*}{0.95\linewidth}{@{\extracolsep{\fill}} lll}
+            \textsc{Name} & \textsc{Statement} & \textsc{Interpretation}\\
+            \hline
+            Identity                & $0$ is a natural number & \textit{self-explanatory}, used later\\
+            % Reflexivity             & For all $n \in \mathbb{N}, n = n$ & (Axioms 2--5 are used together)\\
+            % Symmetry                & For all $a, b \in \mathbb{N}$, $a = b \Longleftrightarrow b = a$ \\
+            % Transitivity            & $\forall a, b, c \in \mathbb{N}$, $a = b \land b = c \Longrightarrow a = c$ & \footnotesize (With axioms 2 and 3), the natural numbers are unique \\
+            % Closure                 & $\forall a \in \mathbb{N}, \exists b \in \mathbb{N} : a = b$ & \textit{Every} natural number is unique \\
+            Equivalence & $\forall n\in \mathbb{N}, = $ is defined as usual & Every natural number is unique \\
+            Successor function, $S$ \hspace{2mm} & $\forall n \in \mathbb{N}, \exists S(n) : S(n) \in \mathbb{N}$ & $\mathbb{N}$ is closed under $S$ \\
+            Injection               & $\forall a,b \in \mathbb{N}, S(a) = S(b) \Longrightarrow a = b$ & Every natural number has a unique successor\\
+            Restriction             & $\not\exists n \in \mathbb{N}$ such that $S(n) = 0$ & The natural numbers do not ``loop back''\\
+            Induction               & $\forall S(n), \exists S(n+1)$ : $S(n+1) \in \mathbb{N}$ & There is always a ``next'' natural number\\
+        \end{tabular*}
+    \end{doublespace}
+    \normalsize
+\end{table}
+\begin{multicols}{2}
+
+An intuitive construction of $\mathbb{N}$ will be given in lecture.
+
+% In summary, we
+% \begin{SorrellItemize}
+%     \item define 0
+%     \item define 1 to be the quantity of an object
+%     \item define the natural numbers to have equivalence (uniqueness)
+%     \item define $S(n)$ to be the ``next number'' (successor) for any natural number
+%     \item define every successor to be unique to every number
+%     \item define $S$ to never equal 0
+%     \item state that $S(n)$ exists for every natural number
+% \end{SorrellItemize}
+
+% Then, the resulting set that fits these constraints (or specifications) is the natural numbers.
+
+\subsubsection{Addition, Multiplication}
+
+Using the successor function, we can define addition and multiplication as follows,
+\begin{align}
+    a + 0 &= a\\
+    a+S(b)&= S(a+b)
+\end{align}
+
+For example,
+\begin{align*}
+    a + 1 &= a + S(0) &&\text{by definition}\\
+          &= S(a+0) &&\text{by (3)}\\
+          &= S(a), &&\text{by (2)}\\
+          \\
+    a + 2 &= a + S(1) &&\text{by definition}\\
+          &= S(a+1)  &&\text{by (3)}\\
+          &= S\big(S(a)\big)     &&\text{by }a + 1 = S(a)
+\end{align*}
+
+For multiplication,
+\begin{align*}
+    a \cdot 0 &= 0,\\
+    a \cdot S(b) &= a + (a\cdot b)\\
+    &\ \  \vdots\\
+    &= \underbrace{a + a + \cdots + a}_{S(b) \text{ times}} &&\text{}
+\end{align*}
+
+We can use $S(b)$ in our definition, because we know that for any natural number $b$, $S(b)$ must exist.
+
+\Theorem
+{
+    For any natural number $n$, $n\cdot 1=n$.
+}
+
+\Proof
+{
+    \begin{align*}
+        n\cdot 1 &= n\cdot S(0) &&\text{(1 is the successor of 0)}\\
+        &= n + (n\cdot 0) &&\text{Def. of multiplication}\\
+        &= n + 0 &&\text{Def. of multiplication}\\
+        &= n &&\text{Def. of addition}
+    \end{align*}
+}
+
+\subsubsection{Associativity and Commutativity of $(+,\cdot)$}
+
+Addition of the natural numbers is \textit{associative}.
+
+\Definition
+{
+    Let $e_0 \in \mathbb{E}$ be the sum of terms $a_i$,
+    \[
+        a_0 + a_1 + \cdots + a_n
+    \]
+
+    \DefinedTerm{Associativity} of addition is the property that introducing any valid combination of parentheses does not change the result of the expression.
+    
+    These are some expressions that are equal to $e_0$, by the associativity of addition,
+    \begin{align*}
+        e_0 &= (a_0 + a_1) + \cdots + a_n\\
+        &= a_0 + (a_1 + \cdots + a_n)\\
+        &= a_0 + a_1 + \cdots + (a_f + a_g + a_h) + \cdots + a_n
+    \end{align*}
+}
+
+The simplest equation that demonstrates associativity is, for $a,b,c \in \mathbb{N}$,
+\begin{align*}
+    a + (b + c) = (a + b) + c
+\end{align*}
+
+We can use the Peano axioms and the definition of addition to prove that addition over the natural numbers is associative.
+
+\Proof
+{
+    Addition over the natural numbers is associative.
+
+    First, let $a,b\in \mathbb{N}$.
+    We will show that associativity holds when adding $a$ and $b$ with $0$,
+    \begin{align*}
+        (a + b) + 0 &= a+b &&\text{by (2)}\\
+                    &= a+(b+0) &&\text{by (3)}
+    \end{align*}
+    Using this as our base case, we will prove associativity of addition by induction,
+    Now, consider an additional natural number $k$, and suppose that,
+    \begin{align*}
+        (a+b)+k = a+(b+k)
+    \end{align*}
+    then,
+    \begin{align*}
+        (a + b) + S(k) &= S\big((a+b)+k\big) &&\text{by (3)}\\
+                    &= S\big(a+(b+k)\big) &&\text{hypothesis}\\
+                    &= a+\Big(S\big(b+k\big)\Big) &&\text{by (3)}\\
+                    &= a+\Big(b+S(k)\Big) &&\text{by (3)}
+    \end{align*}
+    Then, by induction, we know that for every addition of three terms, valid parentheses can be inserted or removed without affecting the result.
+}
+
+There exists one other fundamental property of addition over the natural numbers.
+
+\Definition
+{
+    For every $e_0$ such that $e_0$ is defined as before, the set $[e]$ contains all sums of the same summands.
+    This is the property of \DefinedTerm{commutativity} of addition over the natural numbers.
+}
+
+\Example
+{
+    These are some expressions equivalent to $e_0$,
+    \begin{align*}
+        e_0 &= a_0 + a_1 + \cdots + a_n\\
+        &= a_1 + a_0 + \cdots + a_n\\
+        &= a_3 + a_5 + \cdots + a_n + a_2
+    \end{align*}
+}
+
+The simplest equation that demonstrates commutativity is, for $a,b\in\mathbb{N}$,
+\begin{align*}
+    a+b=b+a
+\end{align*}
+
+To prove this, we must first prove the following,
+\begin{SorrellItemize}
+    \item addition with 0 is commutative
+    \item applying the successor function to a sum is commutative
+\end{SorrellItemize}
+
+...and that is a lot of work.
+The proof of the associativity of addition is sufficient proof-writing for a computation-based course.
+
+% \Proof
+% {
+%     Addition over the natural numbers is commutative.
+%     Let $a,b\in\mathbb{N}$.
+%     First, we will show that addition plus 0 is commutative,
+
+%     \Lemma
+%     {
+%         Addition with zero is commutative.
+
+%         Let $a\in\mathbb{N}$.
+%         If $a = 0$, then,
+%         \begin{align}
+%             a+0&=0+0, &&\text{(Given)}\\
+%             0+a&=0+0 &&\text{(Given)}\\
+%             \Longrightarrow a+0 &= 0+a &&\text{by (4), (5)}
+%         \end{align}
+
+%         Suppose that $a\neq 0$, then assume that,
+%         \begin{align*}
+%             a+0 &= a = 0+a
+%         \end{align*}
+%         then,
+%         \begin{align*}
+%             0+S(a) &= S(0+a) &&\text{by (3)}\\
+%             &=S(a+0) &&\text{hypothesis}\\
+%             &=S(a) &&\text{by (2)}\\
+%             &=S(a)+ 0 &&\text{by (2)} 
+%         \end{align*}
+%         By induction, it is shown that addition with 0 commutes.
+%     }
+
+%     Now, 
+% }
+
+\subsubsection{The Integers, $\mathbb{Z}$, Inverse}
+
+\Definition
+{
+    For every natural number $n$, we define its \DefinedTerm{inverse}, $-n$, to be the number such that,
+    \begin{align}
+        n + (-n) = 0
+    \end{align}
+}
+
+\Definition
+{
+    \DefinedTerm{Subtraction} is the generalization of (4),
+    \begin{align}
+        a - b = a + (-b)
+    \end{align}
+}
+
+To define this, we use an equation of addition, which we have already defined.
+
+First, we define two \textit{differences} (expressions of subtraction) $a-b$ and $c-d$ to be equal if and only if,
+\begin{align}
+    a+d=b+c 
+\end{align}
+
+Given in a single statement,
+\begin{align}
+    a+d=b+c &\Longleftrightarrow a-b = c-d
+\end{align}
+
+Statement (7) probably looks familiar to you.
+
+Now, consider the differences $a-0$ and $c-0$.
+By (6),
+\begin{align*}
+    a-0=c-0 \Longleftrightarrow a+0&=c+0 &&\text{by (7)}\\
+    % a+(-0)&=c+(-0)&&\text{by (5)}\\
+    a&=c &&\text{by (2)}\\
+    % &=0 &&\text{by (4)}\\
+    % \Longrightarrow a-c&=0\\
+    % a+(-c)&=0 &&\text{by (5)}\\
+    % a&=c &&\text{by (4)}\\
+    % a=c &\Longleftrightarrow a-0 = c-0 &&(8)
+\end{align*}
+
+The statement (7) defines an equivalence relation on the set of differences.
+Statement (8) shows that every expression $a-0$ exists and is unique for every natural number $a$ ($a-0$ and $a$ are ``the same'').
+
+Thus, we have assigned a natural number to every difference, and subtraction is now defined.
+
+\Definition
+{
+    The \DefinedTerm{integers}, $\mathbb{Z}$, are the union of the natural numbers and their inverses under addition,
+    \[
+        \mathbb{Z} = \{ \ldots, -2, -1, 0, 1, 2, \ldots \}
+    \]
+}
+
+\subsubsection{The Rationals, $\mathbb{Q}$}
+
+Just as we defined subtraction by using addition, we will define division by using multiplication.
+By doing so, we will define the rationals, $\mathbb{Q}$.
+
+First, for every integer, $z$, we define its inverse under multiplication, $z^{-1}$, to be the number such that,
+\begin{align}
+    z\cdot z^{-1} &= 1
+\end{align}
+
+We define that two fractions (``divisions'', ``ratios'') $\frac{a}{b}$ and $\frac{c}{d}$ such that,
+\begin{align}
+    ad = bc &\Longleftrightarrow \frac{a}{b} = \frac{c}{d}
+\end{align}
+
+(Recall that the \textit{juxtaposition} of two open variables is a representation of multiplication).
+
+Then, we consider the fractions $\frac{a}{1}$ and $\frac{c}{1}$ for arbitrary integers $a$ and $c$,
+\begin{align*}
+    \frac{a}{1} = \frac{c}{1} \Longleftrightarrow ad &= bc\\
+    \Longrightarrow a\cdot 1 &= c\cdot 1\\
+    a &= c\\
+\end{align*}
+
+Then, every integer has a representation as a fraction.
+
+Just like every natural number, which has infinitely many representations as differences ($1 = 2 - 1 = 3 - 4 = \ldots$), every rational number has infinitely many representations ($\frac{2}{3} = \frac{4}{6} = \frac{20}{30} = \ldots$).
+
+Observe what happens if we consider $\frac{a}{0}$.
+To find its equivalence class, we consider $\frac{a}{0}$ and $\frac{c}{0}$,
+\begin{align*}
+    a\cdot 0 &= c \cdot 0\\
+    0 &= 0\\
+\end{align*}
+
+The resulting statement is a tautology, which is not defined for $a$ or $c$.
+
+Thus, we cannot define an inverse for 0, and there exist no rational numbers of the form $\frac{a}{0}$.
+
+\subsubsection{Addition \& Multiplication over $\mathbb{Q}$}
+
+By applying the definitions above, we can derive these properties of the rational numbers.
+For $a,b,c,d \in \mathbb{Z}$ and $c,d \neq 0$,
+
+\begin{align*}
+    \frac{a}{b}+\frac{c}{d} &= \frac{ad+bc}{bd}\\
+    \\
+    \frac{a}{b}\cdot \frac{c}{d} &= \frac{ac}{bd}\\
+    \\
+    \frac{a}{b}\cdot \frac{b}{a} &= 1
+\end{align*}
+
+Addition and multiplication of the rational numbers are associative and commutative.
+
+\subsection{The Reals, $\mathbb{R}$}
+
+We will now give a definition of Cauchy completeness that uses the axiom of choice, and in doing so, we will define the set of real numbers.
+
+For ease, we will introduce one more definition first.
+
+\Definition
+{
+    Let $\mathcal{R}$ be a countably infinite set.
+    Every element in $\mathcal{R}$ is a finite set of symbols.
+    The set containing the ``decimal point'' is in $\mathcal{R}$.
+    Every other set in $\mathcal{R}$ is the set of digits 0 through 9.
+}
+
+By the axiom of choice, we can construct a set by choosing exactly one element from each set.
+This ordered set is a real number.
+Every real number can be constructed this way.
+
+This defines every rational number (whose sequences end with infinitely many zeros), and \textit{irrational} numbers, such as $\pi$.
+
+\subsubsection{The Field Axioms}
+
+Everything that we have rigorously defined is nicely summarized by the field axioms.
+
+\textbf{This is the content that should be familiar.}
+
+\end{multicols}
+\begin{table}[H]
+    \centering
+    \doublespacing
+    \setlength\tabcolsep{0pt}
+    \begin{tabular*}{0.75\linewidth}{@{\extracolsep{\fill}} lll}
+        \textsc{Name} & \textsc{Addition} & \textsc{Multiplication} \\
+        \hline
+        Associativity  & $(a+b)+c=a+(b+c)$ & $(ab)c=a(bc)$ \\
+        Commutativity  & $a+b=b+a$ & $ab=ba$ \\
+        Distributivity & $a(b+c)=ab+ac$ & $(a+b)c=ac+bc$ \\
+        Identity       & $a+0=0+a=a$ & a\,\cdot\ 1 = 1\,\cdot\ a = a \\
+        Inverses       & $a+(-a)=(-a)+a=0$ & $a\cdot a^{-1} = a^{-1}\cdot a = 1$ if $a\neq 0$ \\
+    \end{tabular*}
+    \normalsize
+\end{table}
+\begin{multicols}{2}
+
+\subsubsection{Completeness}
+
+\textit{Cauchy} completeness has already been defined, but there is a key result that should be stated.
+
+Most problem-solving in this course consists of discovering the definition of a set of real numbers that satisfies the given problem.
+Because the reals are complete, if you define a set of real numbers using the real numbers (including its structure, given by the field axioms, completeness, and order), your definition is almost certainly consistent (\Ie{valid, it ``makes sense''}).
+
+In other words, you will rarely need something other than the field axioms (or statements derived from them) to solve problems in this course.
+The significant exception are the quantities $\infty$ and $-\infty$, which are not real numbers.
+
+\subsubsection{Order}
+
+\Definition
+{
+    \DefinedTerm{Order} is a relation on a set that defines \textit{arrangement} of elements in the set.
+}
+
+The order of the reals is a \textit{total} order, denoted by ``$<$''.
+It is defined by these properties, for real numbers $a,b,c$,
+
+\end{multicols}
+\begin{table}[H]
+    \centering
+    \doublespacing
+    \setlength\tabcolsep{0pt}
+    \begin{tabular*}{0.333\linewidth}{@{\extracolsep{\fill}} ll}
+        \textsc{Name} & \textsc{Example} \\
+        \hline
+        Irreflexivity & $a \not< a$ \\
+        Antisymmetry  & $a<b \Longleftrightarrow b \not< a$ \\
+        Transitivity  & $a<b \land b<c \Longrightarrow a < c$ \\
+        Totality      & $\exists r : r \in \mathbb{R}, a < r$ \\
+    \end{tabular*}
+    \normalsize
+\end{table}
+\begin{multicols*}{2}
+    From the order of the reals, we derive the trichotomy of the reals.
+
+    \Definition
+    {
+        \DefinedTerm{The trichotomy of the reals}.
+        For $a,b\in\mathbb{R}$, exactly one of the following statements is true,
+        \begin{SorrellItemize}
+            \item $a<b$
+            \item $a>b$
+            \item $a=b$
+        \end{SorrellItemize}
+    }
+
+\section{Miscellany}
+
+While not in my initial draft of prerequisite material, the concepts in this section are equally important and warrant some time to walk through.
+
+\subsection{Exponentiation}
+
+Exponentiation is an operation that generalizes multiplication.
+We define it recursively, for $b\in\mathbb{R}\setminus\{0\}$ ($b$ is real, non-zero) and $n\in\mathbb{N}$,
+\begin{align*}
+    b^1&=b, &&\text{(base case)}\\
+    b^{n+1}&=b^n \cdot b &&\text{(recurrence)}
+\end{align*}
+
+From this, for $m\in\mathbb{N}$ and $c\in\mathbb{R}$,
+\begin{align*}
+    b^{m+n}&=b^m\cdot b^n,\\
+    \left(b^{m}\right)^n &=b^{mn},\\
+    b^{m-n}&=\frac{b^m}{b^n},\\
+    \left(b\cdot c\right)^n&=b^n \cdot c^n
+\end{align*}
+
+Exponentiation is \textit{right-associative}, which can be stated as,
+\begin{align*}
+    b^{m^n}&=b^{(m^n)}\\
+\end{align*}
+
+Counter-intuitively to other common arithmetic, this means that chained exponential terms are computed \textit{right-to-left}.
+
+Recall the equivalence relation that we defined on the set of differences.
+From this, we can express 0 as $1-1, 2-2, 3-3$, \textit{etc.}
+
+Then,
+\begin{align*}
+    b^{0}&=b^{n-n}\\
+    &=\frac{b^n}{b^n}\\
+    &=1
+\end{align*}
+
+If we allowed $b$ to be 0, we could derive an equation in which a division by zero is equal to 1 (a contradiction to the field axioms).
+This would be \textit{logically inconsistent}; this is why we restrict $b$ to be non-zero.
+
+Finally, we define two more exponential forms,
+\begin{align*}
+    b^{-n}&=\frac{1}{b^n}\\
+    b^{\left(n^{-1}\right)} : \underbrace{b^{\left(n^{-1}\right)}\cdot b^{\left(n^{-1}\right)} \cdot\, (\cdots)\, \cdot b^{\left(n^{-1}\right)}}_{n \text{ times}} &= 1\\
+\end{align*}
+
+The significance of these last two definitions is that they define exponentiation for integral and rational exponents (the inverses of the natural numbers under addition, multiplication).
+
+\subsection{Measure}
+
+Some sets in the real plane correspond strongly to general notions of \textit{shape}, which we use to model material objects.
+
+The \textbf{measure} of a set is its size, in a geometric interpretation.
+We measure a set by defining a function that assigns a number to the set.
+
+\Definition
+{
+    The simplest form of measure is the \DefinedTerm{Jordan measure}, in which a set is measurable if and only if it can be approximated by \textit{axis-aligned bounding boxes} (``AABB''s).
+}
+
+\Definition
+{
+    \DefinedTerm{Axis-aligned bounding boxes} (AABBs) are rectangles that are aligned with the axes.
+    Every axis-aligned bounding box can be given as a Cartesian product of two intervals.
+}
+
+We define the measure of an AABB to be the product of its length and width.
+
+(We will talk more about the axes, intervals, Cartesian products, \textit{etc.}, in the next lecture).
+
+In fact, definitions of basic shapes may have been given to you in previous education as expressions of rectangles.
+
+It is known (through methods outside of the scope of this course) that, with an arbitrarily large quantity of arbitrarily small rectangles, we can approximate the area of any simple shape.
+
+This approximation is modeled by the following figure,
+
+Because the objects that we measure are sets, there is a strong correspondence between measure and set union and intersection.
+
+
+
+\hfill\emoji{skull}
+\end{multicols*}
+
+\end{document}
