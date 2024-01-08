@@ -1,0 +1,418 @@
+% File:      NotesTemplate.tex
+% Author:    Gage Sorrell <gsorrell@purdue.edu>
+% Copyright: (c) 2024 Gage Sorrell
+% License:   MIT
+
+\documentclass[letterpaper,twoside]{article}
+
+% Packages
+
+\usepackage[english]{babel}          % Common package
+\usepackage[utf8]{inputenc}          % Common package
+\usepackage[margin=0.5in,bottom=0.75in]{geometry} % Page margins
+\usepackage{amsmath}                 % General math
+\usepackage{amssymb}                 % For defining \RealExpressions
+\usepackage{graphicx}                % For `\includegraphics{}`
+\usepackage{setspace}                % For `\onehalfspacing`
+\usepackage{float}                   % Position options for `\includegraphics{}`
+\usepackage{amsfonts}                % `\mathbb{}`, etc.
+\usepackage{ragged2e}                % For justified text
+\usepackage{tocloft}                 % For customizing the Table of Contents
+\usepackage{xcolor}                  % To use colors
+% \usepackage{tcolorbox}               % For boxed text
+\usepackage{emoji}                   % For emoji
+\usepackage{makecell}                % For linebreaks in table cells
+\usepackage{fancyhdr}                % For the header and footer
+\usepackage{multicol}                % Two-column layout
+\usepackage{enumitem}                % Set margins within itemize environments
+\usepackage{titlesec}                % For adjusting the space above and below section titles
+\usepackage{tikz}                    % For unit vectors
+\usepackage{mathtools}               % For :=
+
+% Variables
+
+\def\Author{Gage Sorrell}
+\def\BulletPointSeparator{\SmallHSpace$\cdot$\SmallHSpace}
+\def\CourseName{MA 15300-02}
+\def\CourseNameFriendly{College Algebra}
+\def\DocumentTitle{MA153 Notes Day \LectureDay Week \LectureWeek}
+\def\LectureDay{2}
+\def\LectureWeek{1}
+\def\SmallHSpace{\hspace*{1mm}}
+
+% Commands
+
+\newcommand{\Eg}[1]{\textit{e.g.}, #1}
+\newcommand\Ie[1]{\textit{i.e.}, #1}
+
+% Define the command for a stylized definition
+% #1 - Term to be defined
+% #2 - Definition of the term
+\newcommand{\DefinedTerm}[1]{\textbf{#1}}
+\newcommand{\Definition}[1]{%
+    % \begin{tcolorbox}[enhanced jigsaw, % Allows box to break across pages
+    %                 %   colback=blue!5, % Background color
+    %                   colback=white, % Background color
+    %                   colframe=blue!75!black, % Frame color
+    %                   arc=0mm, % Removes rounded corners
+    %                   boxrule=0.5pt, % Frame thickness
+    %                   top=2pt, bottom=2pt, left=5pt, right=5pt] % Spacing around the text
+    % \emoji{book} \textbf{Definition.}\SmallHSpace #1
+    % \end{tcolorbox}
+    \emoji{book} \textbf{Definition.}\SmallHSpace #1 \hfill $\square$
+}
+
+\newcommand{\Note}[1]{%
+    \emoji{warning} \textbf{Note.}\SmallHSpace #1 \hfill $\square$
+}
+
+\newcommand{\Paradox}[1]{%
+    \emoji{police-car-light} \textbf{Paradox.}\SmallHSpace #1 \hfill $\square$
+}
+
+\newcommand{\Example}[1]{%
+    \emoji{magnifying-glass-tilted-right} \textbf{Example.}\SmallHSpace #1 \hfill $\square$
+}
+
+\newcommand{\Theorem}[1]{%
+    \emoji{thinking-face} \textbf{Theorem.}\SmallHSpace #1 \hfill $\square$
+}
+
+\newcommand{\Proof}[1]{%
+    % \begin{tcolorbox}[enhanced jigsaw, % Allows box to break across pages
+    %                 %   colback=blue!5, % Background color
+    %                   colback=white, % Background color
+    %                   colframe=blue!75!black, % Frame color
+    %                   arc=0mm, % Removes rounded corners
+    %                   boxrule=0.5pt, % Frame thickness
+    %                   top=2pt, bottom=2pt, left=5pt, right=5pt] % Spacing around the text
+    % \emoji{book} \textbf{Definition.}\SmallHSpace #1
+    % \end{tcolorbox}
+    \emoji{brain} \textbf{Proof.}\SmallHSpace #1 \hfill $\square$
+}
+
+\newcommand{\Lemma}[1]{%
+    % \begin{tcolorbox}[enhanced jigsaw, % Allows box to break across pages
+    %                 %   colback=blue!5, % Background color
+    %                   colback=white, % Background color
+    %                   colframe=blue!75!black, % Frame color
+    %                   arc=0mm, % Removes rounded corners
+    %                   boxrule=0.5pt, % Frame thickness
+    %                   top=2pt, bottom=2pt, left=5pt, right=5pt] % Spacing around the text
+    % \emoji{book} \textbf{Definition.}\SmallHSpace #1
+    % \end{tcolorbox}
+    \emoji{thinking-face} \textbf{Lemma.}\SmallHSpace #1 \hfill $\square$
+}
+
+\newcommand{\Tldr}[1]{%
+    % \begin{tcolorbox}[enhanced jigsaw, % Allows box to break across pages
+    %                 %   colback=blue!5, % Background color
+    %                   colback=white, % Background color
+    %                   colframe=blue!75!black, % Frame color
+    %                   arc=0mm, % Removes rounded corners
+    %                   boxrule=0.5pt, % Frame thickness
+    %                   top=2pt, bottom=2pt, left=5pt, right=5pt] % Spacing around the text
+    % \emoji{book} \textbf{Definition.}\SmallHSpace #1
+    % \end{tcolorbox}
+    \emoji{stopwatch} \textbf{Summary.}\SmallHSpace #1 \hfill $\square$
+}
+
+% Configuration
+
+\author{\Author}
+\onehalfspacing
+\setlength{\parindent}{0pt}
+\title{\DocumentTitle}
+
+% TOC
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\tocloftpagestyle{empty}
+
+% \tcbuselibrary{skins,breakable} % Extra features for tcolorbox
+\setlength{\parskip}{3mm}
+\setlength{\columnsep}{0.5in}
+\titlespacing*{\section}{0pt}{4pt}{0pt}
+\titlespacing*{\subsection}{0pt}{4pt}{0pt}
+\titlespacing*{\subsubsection}{0pt}{4pt}{0pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headwidth}{7.25in}
+\fancyhead[L]{\textsc{\CourseName}}
+\fancyhead[R]{\textsc{Day} \LectureDay \ \textsc{Week} \LectureWeek}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyfoot[L]{\textsc{Purdue University Fort Wayne}}
+\fancyfoot[R]{Page \thepage}
+
+% Environments
+
+\newenvironment{SorrellEnumerate}
+{
+    \setlength\parskip{-5pt}
+    \begin{enumerate}
+        \setlength\itemsep{-4pt}
+}{
+    \end{enumerate}
+}
+
+\newenvironment{SorrellItemize}
+{
+    \setlength\parskip{-5pt}
+    \begin{itemize}[leftmargin=11pt]
+        \setlength\itemsep{-4pt}
+}{
+    \end{itemize}
+}
+
+% END PREAMBLE %
+
+\begin{document}
+
+\begin{titlepage}
+    \newgeometry{margin=1.25in}
+    \begin{figure}[t]
+        \centering
+        \includegraphics[width=1.5in]{../../Resources/Letterhead.png}
+    \end{figure}
+    \vspace*{0.5in}
+    \begin{center}
+        \huge
+        \textsc{Lecture Notes}
+        
+        \normalsize
+        \CourseName \BulletPointSeparator \Author
+
+        \vspace*{0.25in}
+        \large
+        \begin{table}[H]
+            \centering
+            \begin{tabular}{ll}
+                \textsc{Lecture} \textnumero & \textsc{day 1 week 1}              \\
+                \textsc{Date}                & \textsc{january 9, 2024 (tuesday)}
+            \end{tabular}
+        \end{table}
+        \begin{table}[H]
+            \centering
+            \begin{tabular}{ll}
+                \textsc{Topics} & \textsc{Textbook Section(s)}\\
+                \hline
+                Relations      & \textbf{1.1} \\
+                Functions      & \textbf{1.1} \\
+                Curves         & \text{1.1}\\
+                Rate of Change & \text{1.2}\\
+            \end{tabular}
+        \end{table}
+        \vspace*{\fill}
+        \footnotesize
+        \justifying
+        \leftskip=0.75in
+        \rightskip=0.75in
+        \paragraph*{Objective}
+        The concept of the relation is expanded upon, and the function is formalized.
+        Our focus shifts toward computation, and geometric intuition by constructing curves from functions.
+        The notion of \textit{rate} is introduced, and it is shown how linear functions use rates to model linear phenomena in the natural world.
+    \end{center}
+\end{titlepage}
+
+\newpage
+\newgeometry{margin=1.5in}
+\tableofcontents
+\newpage
+\restoregeometry
+\newgeometry{inner=0.75in,outer=0.5in,top=0.75in,bottom=0.75in}
+\setcounter{page}{1}
+
+\begin{multicols*}{2}
+
+% \section{Syllabus Q \& A}
+
+% Before beginning the lecture, we will do the following:
+
+% \begin{SorrellEnumerate}
+%     \item Instructor introduction
+%     \item Take any questions regarding the syllabus
+%     \item Highlight key parts of the syllabus
+%     \item Perform a demonstration of generative AI for learning course content
+% \end{SorrellEnumerate}
+
+\section{The Relation}
+
+Recall that the relation was defined in the last lecture.
+
+\subsection{The Graph}
+
+As briefly stated in the last lecture, \textit{graphs} are pictorial representations of relations.
+Graphs are useful, particularly for relations defined on countable sets (finite or infinite).
+
+For a picture to be a graph, it just needs to demonstrate a relation in some well-defined way.
+Often, graphs are drawn for a subset of the set that its relation is defined on, with just enough drawn such that the pattern (the ``gist'') of the relation is demonstrated.
+This is convenient for large countable sets, and is necessary for infinite sets.
+
+Graphs are typically drawn by drawing each element as a dot, and each assignment as an arrow pointing from one element to the other.
+The dot is called the \textit{node} or \textit{vertex}, and the arrow is called the \textit{edge}.
+
+Sometimes, if the set that the relation is defined on has subsets that are meaningful in the context of the relation, we choose to draw each subset as a loop that contains the nodes of that subset.
+
+@TODO Two examples
+
+\subsection{An Important Consequence from ZFC}
+
+We are going to define the function as a relation, but before we do, we must observe an important result from ZFC.
+This result will allow us to form a definition of a specific type of relation, to which the function belongs.
+
+Recall that by ZFC, for every set S, we can define subsets $S_0$ and $S_1$ that contain any elements of $S$.
+Additionally, regardless of what is in $S_0$ and $S_1$, the union of $S_0$ and $S_1$ is guaranteed to exist.
+
+Therefore, for any set $S$, we can define $S_0$ and $S_1$ such that they are \textit{disjoint} (they do not share any elements) and their union is $S$.
+
+Summarized,
+\begin{align}
+    \forall S : S \text{ is a set}, \exists S_0, S_1 : S_0 \cup S_1 = S, S_0 \cap S_1 = \emptyset
+\end{align}
+
+@TODO Example
+
+\subsection{The Functional Property}
+
+Additionally, we looked at the equivalence relation, which is a relation that has three specific properties.
+We also looked at \textit{order}, which is another relation.
+
+There are many other properties that relations can have.
+One more important property that a relation can have is the property of being \textit{functional}
+
+\Definition
+{
+    A relation is \DefinedTerm{functional} if, for disjoint subsets $S_0$ and $S_1$, every assignment is \textit{from} $S_0$ \textit{to} $S_1$, or (equivalently), from $S_1$ to $S_0$.
+}
+
+Functional relations rely on the \textit{partition} (the disjoint subsets) to define a direction to the relation as a whole.
+
+@TODO Example
+
+\subsection{The Function}
+
+\Definition
+{
+    The \DefinedTerm{function} is a relation that is functional and total.
+}
+
+Functions are the basic object that allow us to model \textit{transformation}, by \textit{accepting} an object, and \textit{returning} an output, whose value depends upon the input.
+
+@TODO Example
+
+@TODO Example of many-to-many, one-to-many, many-to-one
+
+Functions are defined for an \textit{input} variable, which is also called the \textit{argument}.
+
+The set of elements that the assignments are \textit{from} is the \textbf{domain}.
+
+The set of elements that the assignments are \textit{to} is the \textbf{codomain}.
+Because elements can be assigned to the same element, the set of elements that are assigned \textit{to} is not necessarily the codomain, but a subset of the codomain.
+This set of elements that are assigned \textit{to} is called the \textbf{range}.
+
+\subsubsection{Notation}
+
+To represent a function, we often state its name, followed by a comma-delimited list which is wrapped in parentheses.
+
+\Note
+{
+    Because mathematicians like to be concise, they often use one-letter names to represent a function, especially when making general statements about functions.
+    When you are solving problems modeled after real-world phenomena, you are encouraged to come up with descriptive names for your functions.
+    You might find that this makes your work more organized.
+}
+
+When defining a function in formal notation, we often use the equality symbol between the name of the function, and an expression that defines the function.
+The argument list is needed so that the arguments can be identified when reading/writing the expression that defines the function.
+
+@TODO Examples
+
+@TODO For this class, we'll stick to some common names for domain, elements in the domain, etc.
+
+@TODO Define image, pre-image
+
+\subsubsection{The Rule of Four}
+
+The ``rule of four'' is not a rule in a strict sense, but is the observation that any well-defined function can be stated in four different ways.
+
+If you have defined a function, but struggle to formulate an equivalent definition in one of the other forms, that is in indicator that your definition might not be well-formulated and consistent.
+
+@TODO Definition and example
+
+\subsubsection{Injection}
+
+In addition to being functional and total, some functions assign \textit{to} elements once, or never.
+When a function never assigns multiple elements to the same element, it is \textit{injective} (equivalently, the function is an \textit{injection}).
+
+\Definition
+{
+    Formally, this is stated as,
+    \begin{align}
+        \forall x_i, x_j \in X, f(x_i) = f(x_j) \Longrightarrow x_i = x_j
+    \end{align}
+}
+
+Injections guarantee \textit{uniqueness}.
+
+@TODO Example
+
+\subsubsection{Surjection}
+
+Some functions assign \textit{to} every element in the codomain.
+As a result @TODO
+
+\Note
+{
+    Regardless of whether the codomain is the range for a given function, the codomain is still a proper subset of the range.
+    This is how we define subsets: a set is the subset of another set if the intersection of the two sets is non-empty.
+}
+
+Surjections guarantee \textit{existence} of a pre-image for every element in the codomain.
+
+@TODO Example
+
+\subsubsection{Bijection \& Invertability}
+
+\Definition
+{
+    When a function is injective \textit{and} surjective, it is \DefinedTerm{bijective}.
+}
+
+Bijections give some form of ``same-ness'' (equality) to the elements by the assignments that are made among them.
+
+Because surjection guarantees that we can go ``the other way,'' and injection guarantees that going ``the other way'' does not give a one-to-many relation, the function is a \textit{one-to-one} relation.
+
+@TODO Two Examples, use programming experience to define an example
+
+\section{Rate}
+
+\Definition
+{
+    \DefinedTerm{Rate} models phenomena in which one quantity is manipulated as a function of another quantity.
+}
+
+Because this is a tool that specifically describes the natural world, it is best to simply look at many examples, 
+\begin{SorrellItemize}
+    \item a plane uses some gallons of fuel per mile of travel
+    \item safe consumption of caffeine in one day (for most people) is 3 to 6 \textit{mg} per \textit{kg} of bodyweight
+    \item for every second of travel, an object falling to the surface of the Earth falls an additional 9.8 meters per second
+\end{SorrellItemize}
+
+Rate is typically expressed as a ratio of units, such as $\frac{miles}{hour}$.
+
+\section{The Linear Function}
+
+\section{Curves of Functions}
+
+% \Tldr
+% {
+%     This lecture covers material that you have seen before, \textit{and} foundational content that formally defines this material.
+%     Some of this content will be material that you have seen before, but is stated in a way that you may not have seen before.
+%     \textbf{Do not worry when you see material that is new to you.}
+% }
+
+
+\hfill\emoji{skull}
+\end{multicols*}
+
+\end{document}
